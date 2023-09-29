@@ -2,12 +2,7 @@ import React from 'react';
 import { FaGraduationCap, FaPaintBrush, FaUserGraduate, FaUserTie } from "react-icons/fa";
 import s3img from "../../assets/s3.jpg";
 import TopSection from '../TopSection/TopSection';
-const analysisAll = [
-    { "FaGraduationCap": FaGraduationCap },
-    { "FaPaintBrush": FaPaintBrush },
-    { "FaUserGraduate": FaUserGraduate },
-    { "FaUserTie": FaUserTie },
-]
+
 
 
 
@@ -34,7 +29,7 @@ const AllSummarySection = () => {
 
                                 <FaUserTie className='mx-auto text-pink-600  text-6xl'></FaUserTie>
 
-                                <p className='text-gray-500 font-bold text-4xl my-4'>50+</p>
+                                <p className='text-gray-500 font-bold text-4xl my-4'>500+</p>
                                 <p className='text-gray-500 font-semibold '>Students</p>
 
                             </div>

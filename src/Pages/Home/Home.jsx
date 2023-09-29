@@ -3,7 +3,9 @@ import AllSummarySection from '../../Components/AllSummarySection/AllSummarySect
 import Banner from '../../Components/Banner/Banner';
 import ChooseUs from '../../Components/ChooseUs/ChooseUs';
 import HIghlightNotice from '../../Components/HIghlightNotice/HIghlightNotice';
+import LocationFind from '../../Components/LocationFind/LocationFind';
 import Slider from '../../Components/Slider/Slider';
+import TeacherSlider from '../../Components/TeacherSlider/TeacherSlider';
 
 const Home = () => {
     return (
@@ -23,6 +25,14 @@ const Home = () => {
             <hr />
             <div className='container mx-auto px-2 my-16'>
                 <ChooseUs></ChooseUs>
+            </div>
+            <hr />
+            <div className='container mx-auto px-2 my-16'>
+                <TeacherSlider></TeacherSlider>
+            </div>
+            <hr />
+            <div className='container mx-auto px-2 my-16'>
+                <LocationFind></LocationFind>
             </div>
         </div>
     );
