@@ -7,7 +7,7 @@ const Footer = () => {
                 {/* left section  */}
                 <div className="col-sapn- ">
                     <Link to="/home">
-                        <h1 className="text-4xl font-bold text-white ">Blood- <span className="text-blue-300">Donation</span> </h1>
+                        <h1 className="text-4xl font-bold text-white "> <span className="text-blue-300">Demo</span> High-School & College  </h1>
                     </Link>
                     <p className="py-8 text-white font-semibold">Join our free blood donation campaign and give the gift of life! Your donation can save up to three lives and help those in need.Join us today and help make a positive impact in your community!</p>
 
