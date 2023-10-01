@@ -12,7 +12,7 @@ import img2 from '../../assets/2.png';
 const Slider = () => {
 
     return (
-        <div>
+        <div className='slider'>
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
@@ -25,9 +25,9 @@ const Slider = () => {
                 }}
                 navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className="mySwiper"
+                className="mySwiper h-[60vh] w-full"
             >
-                <SwiperSlide><div><img src={img1} alt="" /></div></SwiperSlide>
+                <SwiperSlide><div><img className='w-full' src={img1} alt="" /></div></SwiperSlide>
                 <SwiperSlide><div><img src={img2} alt="" /></div></SwiperSlide>
                 <SwiperSlide><div><img src={img1} alt="" /></div></SwiperSlide>
                 <SwiperSlide><div><img src={img2} alt="" /></div></SwiperSlide>

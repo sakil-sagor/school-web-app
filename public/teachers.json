@@ -1,0 +1,53 @@
+[
+    {
+        "id": 1,
+        "fullName": "John Doe",
+        "fatherName": "Michael Doe",
+        "department": "Mathematics",
+        "education": "Masters in Mathematics",
+        "sex": "Male",
+        "religion": "Christianity",
+        "social": {
+            "phone": "123-456-7890",
+            "email": "john.doe@example.com",
+            "facebook": "https://www.facebook.com/johndoe"
+        },
+        "bloodGroup": "A+",
+        "joining": "2022-01-15",
+        "address": "123 Main Street, Cityville, State"
+    },
+    {
+        "id": 2,
+        "fullName": "Jane Smith",
+        "fatherName": "Robert Smith",
+        "department": "Science",
+        "education": "Ph.D. in Biology",
+        "sex": "Female",
+        "religion": "Islam",
+        "social": {
+            "phone": "987-654-3210",
+            "email": "jane.smith@example.com",
+            "facebook": "https://www.facebook.com/janesmith"
+        },
+        "bloodGroup": "B-",
+        "joining": "2021-08-10",
+        "address": "456 Oak Avenue, Townsville, State,new work, America"
+    },
+    {
+        "id": 3,
+        "fullName": "David Lee",
+        "fatherName": "Richard Lee",
+        "department": "History",
+        "education": "Bachelor's in History",
+        "sex": "Male",
+        "religion": "Judaism",
+        "social": {
+            "phone": "555-123-4567",
+            "email": "david.lee@example.com",
+            "facebook": "https://www.facebook.com/davidlee"
+        },
+        "bloodGroup": "O+",
+        "joining": "2023-03-20",
+        "address": "789 Elm Street, Villagetown, State"
+    }
+]

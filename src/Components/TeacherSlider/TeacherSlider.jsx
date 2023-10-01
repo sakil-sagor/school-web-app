@@ -1,19 +1,20 @@
 
-import React, { useState } from 'react';
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 
 // Import Swiper styles
-import 'swiper/css';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
+import React, { useState } from 'react';
+import 'swiper/css';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import './teacherStyle.css';
 
 // import required modules
 import { Navigation, Pagination } from 'swiper/modules';
 import TopSection from '../TopSection/TopSection';
+
 const TeacherSlider = () => {
     const [swiperRef, setSwiperRef] = useState(null);
 
