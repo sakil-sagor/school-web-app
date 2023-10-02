@@ -5,6 +5,7 @@ import ContactUs from "../Pages/ContactUs/ContactUs";
 import ErroPage from "../Pages/ErrorPage/ErroPage";
 import Gallery from "../Pages/Gallery/Gallery";
 import Home from "../Pages/Home/Home";
+import Notice from "../Pages/Notice/Notice";
 
 const router = createBrowserRouter([
     {
@@ -16,13 +17,16 @@ const router = createBrowserRouter([
                 path: "/",
                 element: <Home></Home>,
             },
-
             {
                 path: "/teachers",
                 element: <Teachers></Teachers>,
                 loader: async () => {
                     return fetch("teachers.json")
                 }
+            },
+            {
+                path: "/notice",
+                element: <Notice></Notice>,
 
             },
             {
