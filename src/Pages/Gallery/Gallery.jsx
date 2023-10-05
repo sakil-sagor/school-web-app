@@ -39,10 +39,10 @@ const Gallery = () => {
 
                 <div className='w-full h-screen  bg-gray-700 fixed  overflow-hidden'>
                     <div className='container relative mx-auto w-full h-full flex justify-center items-center'>
-                        <button onClick={() => imageAction()} className='absolute top-3 right-3 bg-white text-black m-3 font-bold rounded hover:text-red-700 px-2 text-2xl'>X</button>
-                        <button className='text-white text-4xl absolute left-0 top-[50%] hover:text-red-700 duration-100' onClick={() => imageAction("previous-img")}><FaAngleLeft></FaAngleLeft></button>
+                        <button onClick={() => imageAction()} className='absolute top-3 right-3  text-white m-3 font-bold rounded hover:bg-gray-500 duration-200 px-3 py-1 text-2xl'>X</button>
+                        <button className='text-white text-4xl absolute left-0 top-[50%] hover:bg-gray-500 rounded duration-100' onClick={() => imageAction("previous-img")}><FaAngleLeft></FaAngleLeft></button>
                         <img src={imageData.img} className='w-auto max-w-[90%] max-h-[90%]' alt="" />
-                        <button className='text-white text-5xl absolute right-0 top-[50%]  hover:text-red-700 duration-100' onClick={() => imageAction("next-img")}><FaAngleRight></FaAngleRight></button>
+                        <button className='text-white text-4xl absolute right-0 top-[50%]  hover:bg-gray-500 rounded duration-100' onClick={() => imageAction("next-img")}><FaAngleRight></FaAngleRight></button>
                     </div>
                 </div>
             }

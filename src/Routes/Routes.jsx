@@ -27,6 +27,9 @@ const router = createBrowserRouter([
             {
                 path: "/notice",
                 element: <Notice></Notice>,
+                loader: async () => {
+                    return fetch("notice.json")
+                }
 
             },
             {

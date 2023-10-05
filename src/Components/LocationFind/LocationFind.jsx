@@ -1,11 +1,13 @@
 import { AiFillPhone, AiTwotoneMail, } from "react-icons/ai";
 import { FaLocationPin } from "react-icons/fa6";
+import TitleBoard from "../TopSection/TitleBoard";
 import TopSection from "../TopSection/TopSection";
 
 const LocationFind = () => {
     return (
         <div>
-            <div className="py-8">
+            <TitleBoard titleWord={"Find Us Here"}></TitleBoard>
+            <div className="py-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center">
                     <div className="px-8">
                         <div>

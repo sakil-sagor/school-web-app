@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 const Footer = () => {
     return (
-        <div className="bg-indigo-900 pt-10  ">
+        <div className="bg-blue-900 pt-10  ">
             <div className="container mx-auto px-2">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  full-width-all m-auto pb-8 px-2">
                     {/* left section  */}
