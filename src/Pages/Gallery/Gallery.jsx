@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+// import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 
 const images = [
