@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import AdminProvider from './contexts/AdminProvider.jsx'
+
+import TeacherProvider from './contexts/TeacherProvider.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AdminProvider>
+    <TeacherProvider>
       <App />
-    </AdminProvider>
+    </TeacherProvider>
   </React.StrictMode>,
 )

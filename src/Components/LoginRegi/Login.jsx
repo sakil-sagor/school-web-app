@@ -1,23 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AdminContext } from '../../contexts/AdminProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { TeacherState } from '../../contexts/TeacherProvider';
 
 const Login = () => {
-    const { loading, setLoading, setDonor, setUserPhone } = useContext(AdminContext)
+    // const { , setDonor, setUserPhone } = useContext(AdminContext)
+    const { teacher, loading, setLoading, setTeacher } = TeacherState()
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
-    const from = location.state?.from?.pathname || "/"
+    const from = location.state?.from?.pathname || "/dashboard"
     const data = {
-        contactNumber: phone,
+        teacherPhone: phone,
         password: password,
 
     }
     const handleLogin = (event) => {
         event.preventDefault();
-        console.log(data)
-        fetch('https://bloodserver.lifezet.com/api/v1/donor/login', {
+        fetch('http://localhost:5000/api/v1/teacher/login', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',
@@ -30,22 +32,16 @@ const Login = () => {
             .then(result => {
 
                 if (result.status === "success") {
-                    // const accessToken = result.data.token;
-                    // const data = result.data.other;
                     localStorage.setItem("accessToken", result.data.token)
                     localStorage.setItem("data", JSON.stringify(result.data.other))
-                    console.log(data)
-                    // setDonor(result.data.other)
                     setLoading(false)
+                    toast.success("Login successful");
                     navigate(from, { replace: true })
-                    // navigate('/dashboard')
+
                 }
                 if (result.error) {
-                    // swal({
-                    //     title: "Fail!",
-                    //     text: data.error,
-                    //     icon: "error",
-                    // });
+
+                    toast.error("Login failed");
                 }
             })
 
@@ -76,6 +72,11 @@ const Login = () => {
                     </div>
                 </form >
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                theme="light"
+            />
 
         </div>
     );

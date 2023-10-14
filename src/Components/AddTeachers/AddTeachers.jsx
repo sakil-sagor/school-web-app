@@ -1,5 +1,7 @@
 import React, { useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import blue from "../../assets/blue.gif";
 
 const AddTeachers = () => {
@@ -12,8 +14,8 @@ const AddTeachers = () => {
 
         teacherName: "",
         fatherName: "",
-        teacherPhone: 0,
-        teacherId: 0,
+        teacherPhone: '',
+        teacherId: '',
         gender: "",
         religion: "",
         degree: "",
@@ -35,22 +37,10 @@ const AddTeachers = () => {
                 return {
                     ...state,
                     [action.payload.name]: action.payload.value,
-
                 }
+            case 'RESET':
+                return initialState;
 
-            case "PAYMENT":
-
-                return {
-                    ...state,
-                    payment: {
-                        ...state.payment, [action.payload.name]: action.payload.value,
-                    }
-                }
-            case "TOGOL":
-                return {
-                    ...state,
-                    discount: !state.discount,
-                }
             default:
                 return state
 
@@ -63,17 +53,17 @@ const AddTeachers = () => {
 
 
 
-    const handleInputChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
+    // const handleInputChange = (e) => {
+    //     setFormData({
+    //         ...formData,
+    //         [e.target.name]: e.target.value,
+    //     });
+    // };
 
-    const handleImageUpload = (e) => {
-        const file = e.target.files[0];
-        setImageFile(file);
-    };
+    // const handleImageUpload = (e) => {
+    //     const file = e.target.files[0];
+    //     setImageFile(file);
+    // };
 
     const uploadImageToImgBB = async (imageFile) => {
         const apiKey = '82ec2763f04d19d197f1451e6935abfe';
@@ -107,11 +97,7 @@ const AddTeachers = () => {
         setLoading(true)
         const imageUrl = await uploadImageToImgBB(imageFile);
         state.image = imageUrl;
-        setLoading(false)
-
-
-
-
+        console.log(state)
         try {
             const response = await fetch('http://localhost:5000/api/v1/teacher/registration', {
                 method: 'POST',
@@ -122,30 +108,26 @@ const AddTeachers = () => {
             });
 
             if (response.ok) {
-                const responseData = await response.json();
-                // Handle successful response data, e.g., redirect, display a success message, etc.
-                console.log('Registration successful:', responseData);
+
+
+                toast.success("success");
+                dispatch({ type: 'RESET' });
+                // setImageFile(null)
+                setLoading(false)
+
             } else {
                 // Handle error response, e.g., display an error message, log the error, etc.
-                console.error('Registration failed');
+                toast.error('Registration failed');
+                setLoading(false)
             }
         } catch (error) {
             // Handle network or other errors
-            console.error('Error submitting form:', error);
+            toast.error('Error submitting form:', error);
+            setLoading(false)
         }
 
     }
 
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     // Other registration form submission logic
-
-    //     const imageUrl = await uploadImageToImgBB(imageFile);
-
-    //     console.log(imageUrl)
-    //     // Use imageUrl in your registration logic or store it in your database
-    // };
     return (
         <div className='bg-blue-50 min-h-screen'>
             <div className='full-width-all pt-4 md:pt-8 pb-24 '>
@@ -168,6 +150,7 @@ const AddTeachers = () => {
                                             type='text'
                                             name='teacherName'
                                             id='teacherName'
+                                            value={state.teacherName}
                                             onChange={(e) => dispatch({
                                                 type: 'INPUT',
                                                 payload: { name: e.target.name, value: e.target.value }
@@ -185,6 +168,7 @@ const AddTeachers = () => {
                                             type='text'
                                             name='fatherName'
                                             id='fatherName'
+                                            value={state.fatherName}
                                             required
                                             onChange={(e) => dispatch({
                                                 type: 'INPUT',
@@ -203,6 +187,7 @@ const AddTeachers = () => {
                                                 className='w-full  px-2 py-1 rounded-md border border-gray-300'
                                                 type='number'
                                                 name='teacherId'
+                                                value={state.teacherId}
                                                 id='teacherId'
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
@@ -219,6 +204,7 @@ const AddTeachers = () => {
                                                 className='w-full  px-2 py-1 rounded-md border border-gray-300'
                                                 type='number'
                                                 name='teacherPhone'
+                                                value={state.teacherPhone}
                                                 id='teacherPhone'
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
@@ -236,6 +222,7 @@ const AddTeachers = () => {
                                                 className='block px-2 py-1 rounded-md w-full border border-gray-300 text-center'
                                                 name='gender'
                                                 id='gender'
+                                                value={state.gender}
                                                 required
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
@@ -257,6 +244,7 @@ const AddTeachers = () => {
                                                 className='block px-2 py-1 rounded-md w-full border border-gray-300 text-center'
                                                 name='religion'
                                                 id='religion'
+                                                value={state.religion}
                                                 required
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
@@ -283,6 +271,7 @@ const AddTeachers = () => {
                                                 className='py-1 px-2 rounded-md w-full border border-gray-300'
                                                 type='text'
                                                 name='degree'
+                                                value={state.degree}
                                                 id='degree'
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
@@ -299,6 +288,7 @@ const AddTeachers = () => {
                                                 className='block px-2 py-1 rounded-md w-full border border-gray-300 text-center'
                                                 name='bloodGroup'
                                                 id='bloodGroup'
+                                                value={state.bloodGroup}
                                                 required
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
@@ -332,6 +322,7 @@ const AddTeachers = () => {
                                                 className='py-1 px-2 rounded-md w-full border border-gray-300'
                                                 type='text'
                                                 name='department'
+                                                value={state.department}
                                                 id='department'
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
@@ -349,6 +340,7 @@ const AddTeachers = () => {
                                                 className='py-1 px-2 rounded-md w-full border border-gray-300'
                                                 type='date'
                                                 name='joining'
+                                                value={state.joining}
                                                 id='joining'
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
@@ -371,6 +363,7 @@ const AddTeachers = () => {
                                                 className='py-1 px-2 rounded-md w-full border border-gray-300'
                                                 type='email'
                                                 name='email'
+                                                value={state.email}
                                                 id='email'
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
@@ -388,6 +381,7 @@ const AddTeachers = () => {
                                                 className='py-1 px-2 rounded-md w-full border border-gray-300'
                                                 type='text'
                                                 name='facebook'
+                                                value={state.facebook}
                                                 id='facebook'
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
@@ -407,9 +401,10 @@ const AddTeachers = () => {
                                             <input
                                                 type="file"
                                                 required
+
                                                 accept="image/*"
                                                 id='image'
-                                                onChange={handleImageUpload}
+                                                onChange={(e) => setImageFile(e.target.files[0])}
                                             />
                                         </div>
                                         <div className='w-1/2'>
@@ -419,6 +414,7 @@ const AddTeachers = () => {
                                             <select
                                                 className='block px-2 py-1 rounded-md w-full border border-gray-300 text-center'
                                                 name='title'
+                                                value={state.title}
                                                 id='title'
                                                 required
                                                 onChange={(e) => dispatch({
@@ -449,6 +445,7 @@ const AddTeachers = () => {
                                             className='py-1 rounded-md  px-2  border border-gray-300'
                                             name='address'
                                             id='address'
+                                            value={state.address}
                                             cols='30'
                                             rows='2'
                                             onChange={(e) => dispatch({
@@ -470,6 +467,11 @@ const AddTeachers = () => {
                                 </form>
                             </div>
                         </div >
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={2000}
+                            theme="light"
+                        />
                     </div >
                 </div>
             </div>

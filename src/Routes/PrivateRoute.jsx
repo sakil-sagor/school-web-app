@@ -1,15 +1,16 @@
 import { Navigate, useLocation } from 'react-router-dom';
 
 import Loading from '../Components/Loading/Loading';
-import { AdminState } from '../contexts/AdminProvider';
+import { TeacherState } from '../contexts/TeacherProvider';
 
 const PrivateRoute = ({ children }) => {
-    const { admin, loading } = AdminState();
+    const { teacher, loading } = TeacherState()
+
     const location = useLocation()
     if (loading) {
         return <Loading></Loading>
     }
-    if (admin) {
+    if (teacher) {
         return children;
     }
     return <Navigate to="/registration" state={{ form: location, replace: true }} ></Navigate>

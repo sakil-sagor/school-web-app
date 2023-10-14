@@ -1,17 +1,17 @@
 import { createContext, useContext, useEffect, useState } from "react";
-export const AdminContext = createContext();
+export const TeacherContext = createContext();
 
-const AdminProvider = ({ children }) => {
-    const [admin, setAdmin] = useState(null)
+const TeacherProvider = ({ children }) => {
+    const [teacher, setTeacher] = useState(null)
     const [loading, setLoading] = useState(true)
     const [reload, setReload] = useState(1)
     useEffect(() => {
-        let adminInfo = JSON.parse(localStorage.getItem("info"));
+        let teacherInfo = JSON.parse(localStorage.getItem("data"));
 
 
-        if (adminInfo?.adminPhone) {
+        if (teacherInfo?.teacherPhone) {
 
-            fetch(`http://localhost:5000/api/v1/admin/${adminInfo?.adminPhone}`,
+            fetch(`http://localhost:5000/api/v1/teacher/${teacherInfo?.teacherPhone}`,
                 {
                     headers: {
                         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -20,8 +20,7 @@ const AdminProvider = ({ children }) => {
             )
                 .then(res => res.json())
                 .then(result => {
-
-                    setAdmin(result.data)
+                    setTeacher(result.data)
                     setLoading(false)
 
                 })
@@ -34,19 +33,19 @@ const AdminProvider = ({ children }) => {
         setLoading(true)
         localStorage.removeItem("info");
         localStorage.removeItem("accessToken");
-        setAdmin(null)
+        setTeacher(null)
     }
     const authInfo = {
-        admin, setAdmin, logout, loading, setLoading, reload, setReload
+        teacher, setTeacher, logout, loading, setLoading, reload, setReload
     }
     return (
-        <AdminContext.Provider value={authInfo}>
+        <TeacherContext.Provider value={authInfo}>
             {children}
-        </AdminContext.Provider>
+        </TeacherContext.Provider>
     );
 }
-export const AdminState = () => {
-    return useContext(AdminContext);
+export const TeacherState = () => {
+    return useContext(TeacherContext);
 };
 
-export default AdminProvider;
+export default TeacherProvider;

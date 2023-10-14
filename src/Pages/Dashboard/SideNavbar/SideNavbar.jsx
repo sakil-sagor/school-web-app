@@ -1,10 +1,11 @@
 
 import { Link, useNavigate } from 'react-router-dom';
 import profileImage from "../../../assets/pro1.png";
-import { AdminState } from '../../../contexts/AdminProvider';
+import { TeacherState } from '../../../contexts/TeacherProvider';
 
 const SideNavbar = () => {
-    const { admin, logout } = AdminState()
+    const { teacher, logout } = TeacherState()
+
     const navigate = useNavigate();
     // log out button 
     const handleLogOut = () => {
@@ -19,19 +20,19 @@ const SideNavbar = () => {
                 <div className='rawer-content menu text-black font-semibold'>
                     <div className="mb-6">
                         <img className="w-20 rounded-full block mx-auto" src={profileImage} alt="" />
-                        <p className="text-2xl mt-4">{admin?.displayName}</p>
+                        <p className="text-2xl mt-4">{teacher?.teacherName}</p>
                     </div>
                     <hr className="mb-6" />
                     <div>
                         <Link className=" block py-1 border mb-3 hover:bg-blue-900 hover:text-white rounded-lg" to="/dashboard"> View Profile</Link>
                     </div>
                     <div>
-                        <Link className=" block py-1 border mb-3 hover:bg-blue-900 hover:text-white rounded-lg" to="/dashboard/addCoast">Make Payment</Link>
+                        <Link className=" block py-1 border mb-3 hover:bg-blue-900 hover:text-white rounded-lg" to="/dashboard/addTeachers">Add Teacher</Link>
                     </div>
                     {
-                        admin.adminPhone && <>
+                        teacher.teacherPhone && <>
                             <div>
-                                <Link className=" block py-1 border mb-3 hover:bg-blue-900 hover:text-white rounded-lg" to="/dashboard/allCost">All Cost</Link>
+                                <Link className=" block py-1 border mb-3 hover:bg-blue-900 hover:text-white rounded-lg" to="/dashboard/studentsArea">All Students</Link>
                             </div>
 
                         </>

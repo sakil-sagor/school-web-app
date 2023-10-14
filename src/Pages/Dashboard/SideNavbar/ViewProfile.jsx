@@ -1,10 +1,10 @@
 
 
 import profileImage from "../../../assets/pro1.png";
-import { AdminState } from "../../../contexts/AdminProvider";
+import { TeacherState } from "../../../contexts/TeacherProvider";
 
 const ViewProfile = () => {
-    const { admin } = AdminState()
+    const { teacher } = TeacherState()
 
     return (
         <div className="pb-24 pt-4">
@@ -17,7 +17,7 @@ const ViewProfile = () => {
 
                 <div className="my-6 ">
                     <img className="w-16 rounded-full block mx-auto" src={profileImage} alt="" />
-                    <p className="   mt-4"><span className='font-bold '>  Name : </span> {admin.adminName}</p>
+                    <p className="   mt-4"><span className='font-bold '>  Name : </span> {teacher?.teacherName}</p>
                 </div>
 
             </div>

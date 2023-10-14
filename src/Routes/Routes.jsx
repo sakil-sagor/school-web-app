@@ -5,10 +5,12 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import ViewProfile from "../Pages/Dashboard/SideNavbar/ViewProfile";
+import StudentsArea from "../Pages/Dashboard/StudentsArea/StudentsArea";
 import ErroPage from "../Pages/ErrorPage/ErroPage";
 import Gallery from "../Pages/Gallery/Gallery";
 import Home from "../Pages/Home/Home";
 import Notice from "../Pages/Notice/Notice";
+import Registration from "../Pages/Registration/Registration";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
@@ -47,8 +49,10 @@ const router = createBrowserRouter([
             },
             {
                 path: "/login",
-                element: <AddTeachers></AddTeachers>
+                element: <Registration></Registration>
             },
+
+
 
         ]
     },
@@ -59,12 +63,16 @@ const router = createBrowserRouter([
 
 
             {
-                path: '/dashboard/',
+                path: '/dashboard',
                 element: <ViewProfile></ViewProfile>
             },
             {
                 path: '/dashboard/addTeachers',
                 element: <AddTeachers></AddTeachers>
+            },
+            {
+                path: '/dashboard/studentsArea',
+                element: <StudentsArea></StudentsArea>
             },
 
 

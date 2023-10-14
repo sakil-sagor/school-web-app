@@ -1,8 +1,8 @@
 
 import { Link } from "react-router-dom";
-import { AdminState } from "../../contexts/AdminProvider";
+import { TeacherState } from "../../contexts/TeacherProvider";
 const Footer = () => {
-    const { admin } = AdminState()
+    const { teacher } = TeacherState()
     return (
         <div className="bg-blue-900 pt-10  ">
             <div className="container mx-auto px-2">
@@ -44,7 +44,7 @@ const Footer = () => {
                                 <li className="cursor-pointer hover:underline">
 
                                     {
-                                        admin?.adminPhone &&
+                                        teacher?.teacherPhone &&
                                         <div>
                                             <Link className='ml-3 dashboard-name' to="/dashboard">Dashoboard</Link>
                                             {/* <div className='dashboard '>
@@ -88,7 +88,7 @@ const Footer = () => {
             </div>
             {/* footer bottom  */}
             <div className="bg-gray-900">
-                <p className="py-4 text-center text-sm text-gray-500">All Rights Reserved© 2023 MultiSoft </p>
+                <p className="py-4 text-center text-sm text-gray-500">All Rights Reserved© 2023 <a className="text-pink-500 underline" target="blank" href="https://iitpark.com/">i-it park</a> Ltd. </p>
             </div>
         </div>
     );

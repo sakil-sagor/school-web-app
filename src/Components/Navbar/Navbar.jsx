@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
-import { AdminState } from "../../contexts/AdminProvider";
+
+import { TeacherState } from "../../contexts/TeacherProvider";
 import LinkBar from "./LinkBar";
 
 
 const Navbar = () => {
-    const { admin, logout } = AdminState()
+    const { teacher, logout } = TeacherState()
+
     const [open, setOpen] = useState(true)
     const routes = [
         { id: 1, path: '/', name: 'Home' },

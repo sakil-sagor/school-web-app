@@ -1,9 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { AdminState } from '../../../contexts/AdminProvider';
 import profileImage from "../../assets/pro1.png";
 
 function SideDrawer({ isOpen, onClose, children }) {
-    const { admin, logout } = AdminState()
+    const { teacher, logout } = TeacherState()
 
     const navigate = useNavigate();
     const drawerClasses = isOpen ? 'side-drawer open' : 'side-drawer';
