@@ -1,6 +1,8 @@
 
 import { Link } from "react-router-dom";
+import { AdminState } from "../../contexts/AdminProvider";
 const Footer = () => {
+    const { admin } = AdminState()
     return (
         <div className="bg-blue-900 pt-10  ">
             <div className="container mx-auto px-2">
@@ -33,8 +35,35 @@ const Footer = () => {
                         <div className=" mt-2 text-center">
                             <h3 className="text-center py-2 font-semibold text-xl text-white"> Links</h3>
                             <ul className="tab-list text-gray-300">
-                                <li className="cursor-pointer hover:underline"><Link to="/registration">Login</Link></li>
-                                <li className="cursor-pointer hover:underline"><Link to="/registration">Register</Link></li>
+                                <li className="cursor-pointer hover:underline"><Link to="/login">Login</Link></li>
+                                {/* <li className="cursor-pointer hover:underline"><Link to="/login">Register</Link></li> */}
+
+
+
+
+                                <li className="cursor-pointer hover:underline">
+
+                                    {
+                                        admin?.adminPhone &&
+                                        <div>
+                                            <Link className='ml-3 dashboard-name' to="/dashboard">Dashoboard</Link>
+                                            {/* <div className='dashboard '>
+
+                                                    <button className=' ml-4 ' onClick={handleDrawerToggle}>Dashoboard</button>
+
+
+                                                    <SideDrawer isOpen={isDrawerOpen} onClose={handleDrawerToggle}>
+                                                        Content of the drawer goes here 
+                                                <p>Drawer Content</p>
+                                            </SideDrawer>
+                                                </div>  */}
+
+                                        </div>
+
+
+                                    }
+
+                                </li>
                                 <li className="cursor-pointer hover:underline"><Link to="/contactUs"> About Us</Link></li>
                                 <li className="cursor-pointer hover:underline"><Link to="/contactUs"> Contact Us</Link></li>
                             </ul >

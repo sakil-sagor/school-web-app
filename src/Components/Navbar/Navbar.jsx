@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
+import { AdminState } from "../../contexts/AdminProvider";
 import LinkBar from "./LinkBar";
 
 
 const Navbar = () => {
+    const { admin, logout } = AdminState()
     const [open, setOpen] = useState(true)
     const routes = [
         { id: 1, path: '/', name: 'Home' },
         { id: 2, path: '/teachers', name: 'Teachers' },
         { id: 3, path: '/notice', name: 'Notice' },
         { id: 4, path: '/gallery', name: 'Gallery' },
-        { id: 5, path: '/addTeacher', name: 'addTeacher' },
-        { id: 6, path: '/contactUs', name: 'Contact-Us' },
+        { id: 5, path: '/contactUs', name: 'Contact-Us' },
 
 
     ];
@@ -33,6 +34,21 @@ const Navbar = () => {
                                     <LinkBar key={route.id} route={route}></LinkBar>
                                 ))
                             }
+                            {/* {
+                                admin?.adminPhone ?
+                                    <li className='ml-2 mt-10 md:mt-0 active border md:border-0  nav-bg '>
+                                        <NavLink className='ml-3' to="/dashboard">
+                                            <span className="block py-2"> Profile</span>
+                                        </NavLink>
+                                    </li>
+
+                                    :
+                                    <li className='ml-2 mt-10 md:mt-0 active border md:border-0  nav-bg '>
+                                        <NavLink className='ml-3 py-' to="/registration">
+                                            <span className="block py-2"> Login</span>
+                                        </NavLink>
+                                    </li>
+                            } */}
                         </ul>
                         <div onClick={() => setOpen(!open)}>
                             {

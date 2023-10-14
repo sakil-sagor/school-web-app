@@ -1,12 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddTeachers from "../Components/AddTeachers/AddTeachers";
 import Teachers from "../Components/Teachers/Teachers";
+import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import ViewProfile from "../Pages/Dashboard/SideNavbar/ViewProfile";
 import ErroPage from "../Pages/ErrorPage/ErroPage";
 import Gallery from "../Pages/Gallery/Gallery";
 import Home from "../Pages/Home/Home";
 import Notice from "../Pages/Notice/Notice";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -37,14 +40,35 @@ const router = createBrowserRouter([
                 path: "/gallery",
                 element: <Gallery></Gallery>
             },
-            {
-                path: "/addTeacher",
-                element: <AddTeachers></AddTeachers>
-            },
+
             {
                 path: "/contactUs",
                 element: <ContactUs></ContactUs>
             },
+            {
+                path: "/login",
+                element: <AddTeachers></AddTeachers>
+            },
+
+        ]
+    },
+    {
+        path: "/dashboard",
+        element: <PrivateRoute> <DashboardLayout></DashboardLayout>  </PrivateRoute>,
+        children: [
+
+
+            {
+                path: '/dashboard/',
+                element: <ViewProfile></ViewProfile>
+            },
+            {
+                path: '/dashboard/addTeachers',
+                element: <AddTeachers></AddTeachers>
+            },
+
+
+
 
         ]
     },

@@ -5,15 +5,26 @@ import blue from "../../assets/blue.gif";
 const AddTeachers = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
+    const [imageFile, setImageFile] = useState(null);
+    const [imageUrl, setImageUrl] = useState('');
 
     const initialState = {
 
-        teacherName: "N/A",
+        teacherName: "",
         fatherName: "",
         teacherPhone: 0,
+        teacherId: 0,
+        gender: "",
+        religion: "",
+        degree: "",
+        bloodGroup: "",
+        department: "",
+        joining: "",
+        email: "",
+        facebook: "",
         address: "",
-
-
+        title: '',
+        image: '',
     }
 
     const reducer = (state, action) => {
@@ -51,14 +62,90 @@ const AddTeachers = () => {
 
 
 
-    const paymentSubmit = (e) => {
+
+    const handleInputChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        setImageFile(file);
+    };
+
+    const uploadImageToImgBB = async (imageFile) => {
+        const apiKey = '82ec2763f04d19d197f1451e6935abfe';
+        const formData = new FormData();
+        formData.append('image', imageFile);
+
+        try {
+            const response = await fetch('https://api.imgbb.com/1/upload?key=' + apiKey, {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await response.json();
+            if (data.status === 200) {
+                const imageUrl = data.data.url;
+                setImageUrl(imageUrl);
+                return imageUrl;
+            } else {
+                console.error('Image upload failed');
+                return null;
+            }
+        } catch (error) {
+            console.error('Error uploading image: ', error);
+            return null;
+        }
+    };
+
+
+    const paymentSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
-
-        console.log(state)
+        const imageUrl = await uploadImageToImgBB(imageFile);
+        state.image = imageUrl;
         setLoading(false)
 
+
+
+
+        try {
+            const response = await fetch('http://localhost:5000/api/v1/teacher/registration', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(state),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                // Handle successful response data, e.g., redirect, display a success message, etc.
+                console.log('Registration successful:', responseData);
+            } else {
+                // Handle error response, e.g., display an error message, log the error, etc.
+                console.error('Registration failed');
+            }
+        } catch (error) {
+            // Handle network or other errors
+            console.error('Error submitting form:', error);
+        }
+
     }
+
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     // Other registration form submission logic
+
+    //     const imageUrl = await uploadImageToImgBB(imageFile);
+
+    //     console.log(imageUrl)
+    //     // Use imageUrl in your registration logic or store it in your database
+    // };
     return (
         <div className='bg-blue-50 min-h-screen'>
             <div className='full-width-all pt-4 md:pt-8 pb-24 '>
@@ -72,7 +159,7 @@ const AddTeachers = () => {
 
                                 <form className=" border shadow-xl shadow-blue-300 px-2 py-6 md:p-8 rounded-md" onSubmit={paymentSubmit}>
                                     <div className='flex flex-col w-full'>
-                                        <label className=' text-gray-600 font-semibold block mb-1' htmlFor='studentName'>
+                                        <label className=' text-gray-600 font-semibold block ' htmlFor='teacherName'>
                                             Teacher Name
                                         </label>
                                         <input
@@ -81,15 +168,16 @@ const AddTeachers = () => {
                                             type='text'
                                             name='teacherName'
                                             id='teacherName'
-                                            onBlur={(e) => dispatch({
+                                            onChange={(e) => dispatch({
                                                 type: 'INPUT',
                                                 payload: { name: e.target.name, value: e.target.value }
                                             })}
 
                                         />
                                     </div>
+
                                     <div className='flex flex-col w-full mt-2'>
-                                        <label className=' text-gray-600 font-semibold block mb-1' htmlFor='fatherName'>
+                                        <label className=' text-gray-600 font-semibold block ' htmlFor='fatherName'>
                                             Father Name
                                         </label>
                                         <input
@@ -98,7 +186,7 @@ const AddTeachers = () => {
                                             name='fatherName'
                                             id='fatherName'
                                             required
-                                            onBlur={(e) => dispatch({
+                                            onChange={(e) => dispatch({
                                                 type: 'INPUT',
                                                 payload: { name: e.target.name, value: e.target.value }
                                             })}
@@ -107,7 +195,23 @@ const AddTeachers = () => {
                                     </div>
                                     <div className='flex space-x-4 justify-between mt-2'>
                                         <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block mb-2 ' htmlFor='studentPhone'>
+                                            <label className=' text-gray-600 font-semibold block ' htmlFor='teacherId'>
+                                                Teacher Id
+                                            </label>
+                                            <input
+                                                required
+                                                className='w-full  px-2 py-1 rounded-md border border-gray-300'
+                                                type='number'
+                                                name='teacherId'
+                                                id='teacherId'
+                                                onChange={(e) => dispatch({
+                                                    type: 'INPUT',
+                                                    payload: { name: e.target.name, value: e.target.value }
+                                                })}
+                                            />
+                                        </div>
+                                        <div className='w-1/2'>
+                                            <label className=' text-gray-600 font-semibold block  ' htmlFor='teacherPhone'>
                                                 Phone
                                             </label>
                                             <input
@@ -116,14 +220,16 @@ const AddTeachers = () => {
                                                 type='number'
                                                 name='teacherPhone'
                                                 id='teacherPhone'
-                                                onBlur={(e) => dispatch({
+                                                onChange={(e) => dispatch({
                                                     type: 'INPUT',
                                                     payload: { name: e.target.name, value: e.target.value }
                                                 })}
                                             />
                                         </div>
+                                    </div>
+                                    <div className='flex space-x-4 justify-between mt-2'>
                                         <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block mb-2 ' for='course'>
+                                            <label className=' text-gray-600 font-semibold block ' for='gender'>
                                                 Gender
                                             </label>
                                             <select
@@ -137,16 +243,14 @@ const AddTeachers = () => {
                                                 })}
                                             >
                                                 <option className='' value='' disabled selected>--Gender--</option>
-                                                <option value='Academic'>Male </option>
-                                                <option value='Admission'>Female</option>
-                                                <option value='Admission'>Others</option>
+                                                <option value='male'>Male </option>
+                                                <option value='female'>Female</option>
+                                                <option value='others'>Others</option>
 
                                             </select>
                                         </div>
-                                    </div>
-                                    <div className='flex justify-between    mt-2 space-x-4'>
                                         <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block mb-2 ' for='course'>
+                                            <label className=' text-gray-600 font-semibold block  ' for='religion'>
                                                 Religion
                                             </label>
                                             <select
@@ -160,14 +264,35 @@ const AddTeachers = () => {
                                                 })}
                                             >
                                                 <option className='' value='' disabled selected>--Religion Type--</option>
-                                                <option value='Academic'>Islam </option>
-                                                <option value='Admission'>Hindu</option>
-                                                <option value='Admission'>Buddha</option>
-                                                <option value='Admission'>Christianity</option>
+                                                <option value='islam'>Islam </option>
+                                                <option value='hindu'>Hindu</option>
+                                                <option value='buddha'>Buddha</option>
+                                                <option value='christianity'>Christianity</option>
+                                                <option value='others'>Others</option>
                                             </select>
                                         </div>
+                                    </div>
+
+                                    <div className='flex justify-between    mt-2 space-x-4'>
                                         <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block mb-2 ' for='course'>
+                                            <label className=' text-gray-600 font-semibold block ' for='degree'>
+                                                Degree
+                                            </label>
+                                            <input
+                                                required
+                                                className='py-1 px-2 rounded-md w-full border border-gray-300'
+                                                type='text'
+                                                name='degree'
+                                                id='degree'
+                                                onChange={(e) => dispatch({
+                                                    type: 'INPUT',
+                                                    payload: { name: e.target.name, value: e.target.value }
+                                                })}
+
+                                            />
+                                        </div>
+                                        <div className='w-1/2'>
+                                            <label className=' text-gray-600 font-semibold block  ' for='bloodGroup'>
                                                 Blood Group
                                             </label>
                                             <select
@@ -181,14 +306,14 @@ const AddTeachers = () => {
                                                 })}
                                             >
                                                 <option className='' value='' disabled selected>--Blood Group--</option>
-                                                <option value='Academic'>A+ </option>
-                                                <option value='Admission'>B+</option>
-                                                <option value='Admission'>AB+</option>
-                                                <option value='Admission'>O+</option>
-                                                <option value='Admission'>A-</option>
-                                                <option value='Admission'>B-</option>
-                                                <option value='Admission'>AB-</option>
-                                                <option value='Admission'>O-</option>
+                                                <option value='A+'>A+ </option>
+                                                <option value='B+'>B+</option>
+                                                <option value='AB+'>AB+</option>
+                                                <option value='O+'>O+</option>
+                                                <option value='A-'>A-</option>
+                                                <option value='B-'>B-</option>
+                                                <option value='O-'>AB-</option>
+                                                <option value='O-'>O-</option>
                                             </select>
                                         </div>
 
@@ -196,8 +321,27 @@ const AddTeachers = () => {
                                     </div>
 
                                     <div className='flex justify-between   mt-2 space-x-4 '>
+
+
                                         <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block mb-2 ' for='course'>
+                                            <label className=' text-gray-600 font-semibold block  ' for='department'>
+                                                Department
+                                            </label>
+                                            <input
+                                                required
+                                                className='py-1 px-2 rounded-md w-full border border-gray-300'
+                                                type='text'
+                                                name='department'
+                                                id='department'
+                                                onChange={(e) => dispatch({
+                                                    type: 'INPUT',
+                                                    payload: { name: e.target.name, value: e.target.value }
+                                                })}
+
+                                            />
+                                        </div>
+                                        <div className='w-1/2'>
+                                            <label className=' text-gray-600 font-semibold block' for='joining'>
                                                 Joining
                                             </label>
                                             <input
@@ -206,25 +350,7 @@ const AddTeachers = () => {
                                                 type='date'
                                                 name='joining'
                                                 id='joining'
-                                                onBlur={(e) => dispatch({
-                                                    type: 'INPUT',
-                                                    payload: { name: e.target.name, value: e.target.value }
-                                                })}
-
-                                            />
-                                        </div>
-
-                                        <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block mb-2 ' for='course'>
-                                                Degree
-                                            </label>
-                                            <input
-                                                required
-                                                className='py-1 px-2 rounded-md w-full border border-gray-300'
-                                                type='text'
-                                                name='degree'
-                                                id='degree'
-                                                onBlur={(e) => dispatch({
+                                                onChange={(e) => dispatch({
                                                     type: 'INPUT',
                                                     payload: { name: e.target.name, value: e.target.value }
                                                 })}
@@ -235,27 +361,9 @@ const AddTeachers = () => {
 
                                     </div>
 
-                                    <div className='flex flex-col w-full mt-2'>
-                                        <label className=' text-gray-600 font-semibold block mb-1' htmlFor='studentName'>
-                                            Department
-                                        </label>
-                                        <input
-                                            required
-                                            className='py-1 px-2 rounded-md border border-gray-300'
-                                            type='text'
-                                            name='department'
-                                            id='department'
-                                            onBlur={(e) => dispatch({
-                                                type: 'INPUT',
-                                                payload: { name: e.target.name, value: e.target.value }
-                                            })}
-
-                                        />
-                                    </div>
-
-                                    <div className='flex justify-between md:m-auto space-x-4 '>
+                                    <div className='flex justify-between mt-2 space-x-4 '>
                                         <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block mb-2 ' for='course'>
+                                            <label className=' text-gray-600 font-semibold block ' for='email'>
                                                 Email
                                             </label>
                                             <input
@@ -264,7 +372,7 @@ const AddTeachers = () => {
                                                 type='email'
                                                 name='email'
                                                 id='email'
-                                                onBlur={(e) => dispatch({
+                                                onChange={(e) => dispatch({
                                                     type: 'INPUT',
                                                     payload: { name: e.target.name, value: e.target.value }
                                                 })}
@@ -272,7 +380,7 @@ const AddTeachers = () => {
                                             />
                                         </div>
                                         <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block mb-2 ' for='course'>
+                                            <label className=' text-gray-600 font-semibold block ' for='facebook'>
                                                 Facebook
                                             </label>
                                             <input
@@ -281,7 +389,7 @@ const AddTeachers = () => {
                                                 type='text'
                                                 name='facebook'
                                                 id='facebook'
-                                                onBlur={(e) => dispatch({
+                                                onChange={(e) => dispatch({
                                                     type: 'INPUT',
                                                     payload: { name: e.target.name, value: e.target.value }
                                                 })}
@@ -291,9 +399,49 @@ const AddTeachers = () => {
 
 
                                     </div>
+                                    <div className='flex space-x-4 justify-between mt-2'>
+                                        <div className='w-1/2'>
+                                            <label className=' text-gray-600 font-semibold block  ' for='image'>
+                                                Image
+                                            </label>
+                                            <input
+                                                type="file"
+                                                required
+                                                accept="image/*"
+                                                id='image'
+                                                onChange={handleImageUpload}
+                                            />
+                                        </div>
+                                        <div className='w-1/2'>
+                                            <label className=' text-gray-600 font-semibold block  ' for='title'>
+                                                Title
+                                            </label>
+                                            <select
+                                                className='block px-2 py-1 rounded-md w-full border border-gray-300 text-center'
+                                                name='title'
+                                                id='title'
+                                                required
+                                                onChange={(e) => dispatch({
+                                                    type: 'INPUT',
+                                                    payload: { name: e.target.name, value: e.target.value }
+                                                })}
+                                            >
+                                                <option className='' value='' disabled selected>--Title Type--</option>
+                                                <option value='Headmaster'>Headmaster </option>
+                                                <option value='Headmistress'>Headmistress </option>
+                                                <option value='Asst. Headmaster'>Asst. Headmaster </option>
+                                                <option value='Asst. Headmistress'>Asst. Headmistress </option>
+                                                <option value='Asst. Teacher'>Asst. Teacher</option>
+                                                <option value='Office Asst.'>Office Asst.</option>
+                                                <option value='Office Asst.'>Office Asst.</option>
+                                                <option value='MLSS'>MLSS</option>
 
-                                    <div className='flex flex-col w-full '>
-                                        <label className=' text-gray-600 font-semibold block mb-2 ' for='address'>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div className='flex flex-col w-full mt-2'>
+                                        <label className=' text-gray-600 font-semibold block ' for='address'>
                                             Address
                                         </label>
                                         <textarea
@@ -303,7 +451,7 @@ const AddTeachers = () => {
                                             id='address'
                                             cols='30'
                                             rows='2'
-                                            onBlur={(e) => dispatch({
+                                            onChange={(e) => dispatch({
                                                 type: 'INPUT',
                                                 payload: { name: e.target.name, value: e.target.value }
                                             })}
@@ -315,7 +463,7 @@ const AddTeachers = () => {
                                             type='submit'
                                         >
                                             {
-                                                loading ? <img className='w-8 mx-16' src={blue} alt="" /> : <span className='w-10 mx-12 py-12'>Submit</span>
+                                                loading ? <img className='w-8 mx-16' src={blue} alt="" /> : <span className='w-10 mx-12 py-12'>Register</span>
                                             }
                                         </button>
                                     </div>
