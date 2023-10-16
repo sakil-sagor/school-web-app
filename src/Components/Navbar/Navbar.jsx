@@ -7,7 +7,7 @@ import LinkBar from "./LinkBar";
 
 const Navbar = () => {
     const { teacher, logout } = TeacherState()
-
+    console.log(teacher)
     const [open, setOpen] = useState(true)
     const routes = [
         { id: 1, path: '/', name: 'Home' },

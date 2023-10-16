@@ -2,7 +2,15 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-a.active {
+.active {
     color: #0052FF;
     text-decoration: underline;
+
+}
+
+.teacher-nav .active {
+    background-color: rgb(30 64 175);
+    text-decoration: none;
+
+
 }

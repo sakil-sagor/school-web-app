@@ -7,7 +7,7 @@ const TeacherProvider = ({ children }) => {
     const [reload, setReload] = useState(1)
     useEffect(() => {
         let teacherInfo = JSON.parse(localStorage.getItem("data"));
-
+        console.log(teacherInfo)
 
         if (teacherInfo?.teacherPhone) {
 
@@ -31,7 +31,7 @@ const TeacherProvider = ({ children }) => {
 
     const logout = () => {
         setLoading(true)
-        localStorage.removeItem("info");
+        localStorage.removeItem("data");
         localStorage.removeItem("accessToken");
         setTeacher(null)
     }

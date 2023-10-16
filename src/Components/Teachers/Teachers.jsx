@@ -1,12 +1,26 @@
+import { useEffect, useState } from "react";
 import { AiFillDatabase } from "react-icons/ai";
-import { useLoaderData } from "react-router-dom";
 import SingleTeacher from "./SingleTeacher";
 
 
 
 const Teachers = () => {
-    const teachers = useLoaderData();
+    // const teachers = useLoaderData();
+    const [teachers, setTeachers] = useState([]);
 
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await fetch('http://localhost:5000/api/v1/teacher/all'); // Replace with the actual route URL
+                const jsonData = await response.json();
+                setTeachers(jsonData.data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchData();
+    }, []);
     return (
         <div className="min-h-[80vh] bg-blue-50">
             <div className="container mx-auto px-2">
@@ -16,7 +30,7 @@ const Teachers = () => {
                         <div className="py-6">
                             <h2 className="text-green-600 font-semibold text-2xl "><AiFillDatabase className="inline mb-1"></AiFillDatabase> Techers list</h2>
                             <div className="flex items-center justify-between mt-4 px-2">
-                                <p>Total Result: <span>{""}</span></p>
+                                <p>Total Result:{teachers.length} <span>{""}</span></p>
                                 <div>
                                     <label htmlFor="">Search </label>
                                     <input className="border border-gray-400 p-1 bg-blue-50 rounded" type="text" />

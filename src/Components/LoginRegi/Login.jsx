@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { TeacherState } from '../../contexts/TeacherProvider';
+import blue from "../../assets/blue.gif";
+import { TeacherContext } from '../../contexts/TeacherProvider';
 
 const Login = () => {
     // const { , setDonor, setUserPhone } = useContext(AdminContext)
-    const { teacher, loading, setLoading, setTeacher } = TeacherState()
+    const { teacher, loading, setLoading, setTeacher } = useContext(TeacherContext)
     const [phone, setPhone] = useState('');
+    const [loginflow, setLoginflow] = useState(false)
     const [password, setPassword] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
-    const from = location.state?.from?.pathname || "/dashboard"
+    // const from = location.state?.from?.pathname || "/dashboard"
+    const from = "/dashboard"
     const data = {
         teacherPhone: phone,
         password: password,
@@ -19,6 +22,7 @@ const Login = () => {
     }
     const handleLogin = (event) => {
         event.preventDefault();
+        setLoginflow(true)
         fetch('http://localhost:5000/api/v1/teacher/login', {
             method: "POST",
             headers: {
@@ -32,11 +36,20 @@ const Login = () => {
             .then(result => {
 
                 if (result.status === "success") {
+
                     localStorage.setItem("accessToken", result.data.token)
                     localStorage.setItem("data", JSON.stringify(result.data.other))
-                    setLoading(false)
+                    // setLoading(true)
                     toast.success("Login successful");
-                    navigate(from, { replace: true })
+                    setLoading(false)
+                    setTimeout(() => {
+                        navigate(from, { replace: true })
+                        setLoginflow(false)
+                    }, 700);
+
+
+
+
 
                 }
                 if (result.error) {
@@ -58,15 +71,24 @@ const Login = () => {
                             <input placeholder=' Your Phone Number ' required className="p-2 w-full  bg-white border border-gray-400 rounded-md " type="number" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
                         </div>
 
-                        <div className='mb-6 '>
+                        <div className='mb-3 '>
                             <span className=' text-gray-600 font-semibold block mb-2'> Password </span>
                             <input placeholder='Password' type="password" required className="p-2 w-full   bg-white border border-gray-400 rounded-md " value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
 
-                        <div className='mb-6'>
+                        <br />
 
-                            <button className=' py-2 text-sm w-full text-white cursor-pointer rounded bg-blue-800 uppercase hover:bg-blue-900' type="submit">Login</button>
+                        <div className='  '>
 
+
+                            <div className='flex items-center justify-center h-10  bg-indigo-500 rounded'>
+                                <button className=' '>
+                                    <img className={`w-8 text-center  mx-auto ${!loginflow && "hidden"}`} src={blue} alt="" />
+                                </button>
+                                <button className={`w-full h-full  text-white py-18 ${loginflow && "hidden"}`}>
+                                    <span  >Login</span>
+                                </button>
+                            </div>
                         </div>
 
                     </div>

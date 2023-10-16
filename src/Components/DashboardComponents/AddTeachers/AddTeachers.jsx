@@ -2,7 +2,7 @@ import React, { useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import blue from "../../assets/blue.gif";
+import blue from "../../../assets/blue.gif";
 
 const AddTeachers = () => {
     const navigate = useNavigate()
@@ -130,7 +130,7 @@ const AddTeachers = () => {
 
     return (
         <div className='bg-blue-50 min-h-screen'>
-            <div className='full-width-all pt-4 md:pt-8 pb-24 '>
+            <div className='full-width-all pt-4  pb-24 '>
                 <div className='w-full md:2/4 lg:w-2/4 m-auto pt-12'>
                     <div className='bg-blue-50 '>
                         <div className=' '>

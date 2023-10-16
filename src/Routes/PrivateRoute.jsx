@@ -13,7 +13,7 @@ const PrivateRoute = ({ children }) => {
     if (teacher) {
         return children;
     }
-    return <Navigate to="/registration" state={{ form: location, replace: true }} ></Navigate>
+    return <Navigate to="/login" state={{ form: location, replace: true }} ></Navigate>
 };
 
 export default PrivateRoute;

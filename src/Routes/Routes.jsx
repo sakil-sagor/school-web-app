@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import AddTeachers from "../Components/AddTeachers/AddTeachers";
+import AddTeachers from "../Components/DashboardComponents/AddTeachers/AddTeachers";
 import Teachers from "../Components/Teachers/Teachers";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import ViewProfile from "../Pages/Dashboard/SideNavbar/ViewProfile";
 import StudentsArea from "../Pages/Dashboard/StudentsArea/StudentsArea";
+import TeachersArea from "../Pages/Dashboard/TeachersArea/TeachersArea";
 import ErroPage from "../Pages/ErrorPage/ErroPage";
 import Gallery from "../Pages/Gallery/Gallery";
 import Home from "../Pages/Home/Home";
@@ -67,8 +68,27 @@ const router = createBrowserRouter([
                 element: <ViewProfile></ViewProfile>
             },
             {
-                path: '/dashboard/addTeachers',
-                element: <AddTeachers></AddTeachers>
+                path: '/dashboard/teachers',
+                element: <TeachersArea></TeachersArea>,
+                children: [
+
+
+                    {
+                        path: '/dashboard/teachers',
+                        element: <Teachers></Teachers>,
+
+                    },
+                    {
+                        path: '/dashboard/teachers/all',
+                        element: <Teachers></Teachers>,
+
+                    },
+
+                    {
+                        path: '/dashboard/teachers/addTeacher',
+                        element: <AddTeachers></AddTeachers>
+                    },
+                ]
             },
             {
                 path: '/dashboard/studentsArea',

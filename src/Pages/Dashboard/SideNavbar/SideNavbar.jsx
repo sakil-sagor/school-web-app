@@ -27,7 +27,7 @@ const SideNavbar = () => {
                         <Link className=" block py-1 border mb-3 hover:bg-blue-900 hover:text-white rounded-lg" to="/dashboard"> View Profile</Link>
                     </div>
                     <div>
-                        <Link className=" block py-1 border mb-3 hover:bg-blue-900 hover:text-white rounded-lg" to="/dashboard/addTeachers">Add Teacher</Link>
+                        <Link className=" block py-1 border mb-3 hover:bg-blue-900 hover:text-white rounded-lg" to="/dashboard/teachers"> Teachers</Link>
                     </div>
                     {
                         teacher.teacherPhone && <>
