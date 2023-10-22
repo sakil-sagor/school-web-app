@@ -1,5 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddStudents from "../Components/DashboardComponents/AddStudents/AddStudents";
 import AddTeachers from "../Components/DashboardComponents/AddTeachers/AddTeachers";
+import AllStudents from "../Components/DashboardComponents/AllStudents/AllStudents";
+import StudentDetails from "../Components/DashboardComponents/AllStudents/StudentDetails";
 import Teachers from "../Components/Teachers/Teachers";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
@@ -91,8 +94,32 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: '/dashboard/studentsArea',
-                element: <StudentsArea></StudentsArea>
+                path: '/dashboard/students',
+                element: <StudentsArea></StudentsArea>,
+                children: [
+
+
+                    {
+                        path: '/dashboard/students',
+                        element: <AllStudents></AllStudents>,
+
+                    },
+                    {
+                        path: '/dashboard/students/all',
+                        element: <AllStudents></AllStudents>,
+
+                    },
+                    {
+                        path: '/dashboard/students/:id',
+                        element: <StudentDetails></StudentDetails>,
+
+                    },
+
+                    {
+                        path: '/dashboard/students/addStudents',
+                        element: <AddStudents></AddStudents>
+                    },
+                ]
             },
 
 

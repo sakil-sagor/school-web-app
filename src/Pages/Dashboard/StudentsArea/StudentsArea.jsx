@@ -1,9 +1,24 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
+import TopNavbar from '../SideNavbar/TopNavbar';
 
 const StudentsArea = () => {
+    const routes = [
+        { id: 1, path: '/dashboard/students/all', name: 'All Students' },
+        { id: 2, path: '/dashboard/students/addStudents', name: 'Add Students' },
+
+
+
+    ];
     return (
         <div>
-            <h2 className='text-center text-4xl font-bold mt-12'>Comming Soon...</h2>
+            <div>
+                <div>
+                    <TopNavbar routes={routes}></TopNavbar>
+                </div>
+                <Outlet></Outlet>
+
+            </div>
         </div>
     );
 };

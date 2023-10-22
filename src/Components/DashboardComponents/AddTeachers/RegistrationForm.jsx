@@ -49,7 +49,7 @@ function RegistrationForm() {
       return null;
     }
   };
-  console.log(imageUrl)
+  // console.log(imageUrl)
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Other registration form submission logic

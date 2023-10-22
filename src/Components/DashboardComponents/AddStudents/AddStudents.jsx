@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import blue from "../../../assets/blue.gif";
 
-const AddTeachers = () => {
+const AddStudents = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const [imageFile, setImageFile] = useState(null);
@@ -12,21 +12,18 @@ const AddTeachers = () => {
 
     const initialState = {
 
-        teacherName: "",
+        studentsName: "",
         fatherName: "",
-        teacherPhone: '',
-        teacherId: '',
         gender: "",
+        phone: '',
+        classRoll: '',
         religion: "",
-        degree: "",
+        shift: '',
         bloodGroup: "",
-        department: "",
-        joining: "",
-        email: "",
-        facebook: "",
+        nameOfClass: "",
+        section: '',
         address: "",
-        title: '',
-        image: '',
+
     }
 
     const reducer = (state, action) => {
@@ -52,83 +49,41 @@ const AddTeachers = () => {
 
 
 
+    // const year = currentDate
 
-    // const handleInputChange = (e) => {
-    //     setFormData({
-    //         ...formData,
-    //         [e.target.name]: e.target.value,
-    //     });
-    // };
+    console.log(new Date().getFullYear() % 100)
 
-    // const handleImageUpload = (e) => {
-    //     const file = e.target.files[0];
-    //     setImageFile(file);
-    // };
-
-    const uploadImageToImgBB = async (imageFile) => {
-        const apiKey = '82ec2763f04d19d197f1451e6935abfe';
-        const formData = new FormData();
-        formData.append('image', imageFile);
-
-        try {
-            const response = await fetch('https://api.imgbb.com/1/upload?key=' + apiKey, {
-                method: 'POST',
-                body: formData,
-            });
-
-            const data = await response.json();
-            if (data.status === 200) {
-                const imageUrl = data.data.url;
-                setImageUrl(imageUrl);
-                return imageUrl;
-            } else {
-                console.error('Image upload failed');
-                return null;
-            }
-        } catch (error) {
-            console.error('Error uploading image: ', error);
-            return null;
-        }
-    };
-
-
-    const paymentSubmit = async (e) => {
+    const addStudentsData = async (e) => {
         e.preventDefault()
         setLoading(true)
-        const imageUrl = await uploadImageToImgBB(imageFile);
-        state.image = imageUrl;
-        console.log(state)
+
+
+
+
+
         try {
-            const response = await fetch('http://localhost:5000/api/v1/teacher/registration', {
+            const response = await fetch('http://localhost:5000/api/v1/student/registration', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(state),
             });
-
             if (response.ok) {
-
-
                 toast.success("success");
                 dispatch({ type: 'RESET' });
-
                 setLoading(false)
-                setImageFile('')
-
             } else {
-                // Handle error response, e.g., display an error message, log the error, etc.
+
                 toast.error('Registration failed');
                 setLoading(false)
             }
         } catch (error) {
-            // Handle network or other errors
             toast.error('Error submitting form:', error);
             setLoading(false)
         }
 
     }
-
     return (
         <div className='bg-blue-50 min-h-screen'>
             <div className='full-width-all pt-4  pb-24 '>
@@ -136,22 +91,22 @@ const AddTeachers = () => {
                     <div className='bg-blue-50 '>
                         <div className=' '>
                             <div className=" border shadow-md shadow-blue-300 px-2 py-6 md:p-8 text-center rounded-md">
-                                <h2 className='text-2xl font-bold text-blue-700'>Add Teacher Detials</h2>
+                                <h2 className='text-2xl font-bold text-blue-700'>Add Student Details</h2>
                             </div>
                             <div className=' mt-4 '>
 
-                                <form className=" border shadow-xl shadow-blue-300 px-2 py-6 md:p-8 rounded-md" onSubmit={paymentSubmit}>
+                                <form className=" border shadow-xl shadow-blue-300 px-2 py-6 md:p-8 rounded-md" onSubmit={addStudentsData}>
                                     <div className='flex flex-col w-full'>
-                                        <label className=' text-gray-600 font-semibold block ' htmlFor='teacherName'>
-                                            Teacher Name
+                                        <label className=' text-gray-600 font-semibold block ' htmlFor='studentsName'>
+                                            Student Name
                                         </label>
                                         <input
                                             required
                                             className='py-1 px-2 rounded-md border border-gray-300'
                                             type='text'
-                                            name='teacherName'
-                                            id='teacherName'
-                                            value={state.teacherName}
+                                            name='studentsName'
+                                            id='studentsName'
+                                            value={state.studentsName}
                                             onChange={(e) => dispatch({
                                                 type: 'INPUT',
                                                 payload: { name: e.target.name, value: e.target.value }
@@ -180,16 +135,16 @@ const AddTeachers = () => {
                                     </div>
                                     <div className='flex space-x-4 justify-between mt-2'>
                                         <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block ' htmlFor='teacherId'>
-                                                Teacher Id
+                                            <label className=' text-gray-600 font-semibold block ' htmlFor='classRoll'>
+                                                Class Roll
                                             </label>
                                             <input
                                                 required
                                                 className='w-full  px-2 py-1 rounded-md border border-gray-300'
                                                 type='number'
-                                                name='teacherId'
-                                                value={state.teacherId}
-                                                id='teacherId'
+                                                name='classRoll'
+                                                value={state.classRoll}
+                                                id='classRoll'
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
                                                     payload: { name: e.target.name, value: e.target.value }
@@ -197,16 +152,16 @@ const AddTeachers = () => {
                                             />
                                         </div>
                                         <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block  ' htmlFor='teacherPhone'>
+                                            <label className=' text-gray-600 font-semibold block  ' htmlFor='phone'>
                                                 Phone
                                             </label>
                                             <input
                                                 required
                                                 className='w-full  px-2 py-1 rounded-md border border-gray-300'
                                                 type='number'
-                                                name='teacherPhone'
-                                                value={state.teacherPhone}
-                                                id='teacherPhone'
+                                                name='phone'
+                                                value={state.phone}
+                                                id='phone'
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
                                                     payload: { name: e.target.name, value: e.target.value }
@@ -264,22 +219,25 @@ const AddTeachers = () => {
 
                                     <div className='flex justify-between    mt-2 space-x-4'>
                                         <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block ' for='degree'>
-                                                Degree
+                                            <label className=' text-gray-600 font-semibold block ' for='shift'>
+                                                Shift
                                             </label>
-                                            <input
+                                            <select
+                                                className='block px-2 py-1 rounded-md w-full border border-gray-300 text-center'
+                                                name='shift'
+                                                id='shift'
+                                                value={state.shift}
                                                 required
-                                                className='py-1 px-2 rounded-md w-full border border-gray-300'
-                                                type='text'
-                                                name='degree'
-                                                value={state.degree}
-                                                id='degree'
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
                                                     payload: { name: e.target.name, value: e.target.value }
                                                 })}
+                                            >
+                                                <option className='' value='' disabled selected>--Select Shift--</option>
+                                                <option value='morning'>Morning </option>
+                                                <option value='day'>Day</option>
 
-                                            />
+                                            </select>
                                         </div>
                                         <div className='w-1/2'>
                                             <label className=' text-gray-600 font-semibold block  ' for='bloodGroup'>
@@ -305,133 +263,62 @@ const AddTeachers = () => {
                                                 <option value='B-'>B-</option>
                                                 <option value='O-'>AB-</option>
                                                 <option value='O-'>O-</option>
+                                                <option value='N/A'>N/A</option>
                                             </select>
                                         </div>
 
 
                                     </div>
 
-                                    <div className='flex justify-between   mt-2 space-x-4 '>
 
 
-                                        <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block  ' for='department'>
-                                                Department
-                                            </label>
-                                            <input
-                                                required
-                                                className='py-1 px-2 rounded-md w-full border border-gray-300'
-                                                type='text'
-                                                name='department'
-                                                value={state.department}
-                                                id='department'
-                                                onChange={(e) => dispatch({
-                                                    type: 'INPUT',
-                                                    payload: { name: e.target.name, value: e.target.value }
-                                                })}
 
-                                            />
-                                        </div>
-                                        <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block' for='joining'>
-                                                Joining
-                                            </label>
-                                            <input
-                                                required
-                                                className='py-1 px-2 rounded-md w-full border border-gray-300'
-                                                type='date'
-                                                name='joining'
-                                                value={state.joining}
-                                                id='joining'
-                                                onChange={(e) => dispatch({
-                                                    type: 'INPUT',
-                                                    payload: { name: e.target.name, value: e.target.value }
-                                                })}
-
-                                            />
-                                        </div>
-
-
-                                    </div>
-
-                                    <div className='flex justify-between mt-2 space-x-4 '>
-                                        <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block ' for='email'>
-                                                Email
-                                            </label>
-                                            <input
-                                                required
-                                                className='py-1 px-2 rounded-md w-full border border-gray-300'
-                                                type='email'
-                                                name='email'
-                                                value={state.email}
-                                                id='email'
-                                                onChange={(e) => dispatch({
-                                                    type: 'INPUT',
-                                                    payload: { name: e.target.name, value: e.target.value }
-                                                })}
-
-                                            />
-                                        </div>
-                                        <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block ' for='facebook'>
-                                                Facebook
-                                            </label>
-                                            <input
-                                                required
-                                                className='py-1 px-2 rounded-md w-full border border-gray-300'
-                                                type='text'
-                                                name='facebook'
-                                                value={state.facebook}
-                                                id='facebook'
-                                                onChange={(e) => dispatch({
-                                                    type: 'INPUT',
-                                                    payload: { name: e.target.name, value: e.target.value }
-                                                })}
-
-                                            />
-                                        </div>
-
-
-                                    </div>
                                     <div className='flex space-x-4 justify-between mt-2'>
                                         <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block  ' for='image'>
-                                                Image
-                                            </label>
-                                            <input
-                                                type="file"
-                                                required
-
-                                                accept="image/*"
-                                                id='image'
-                                                onChange={(e) => setImageFile(e.target.files[0])}
-                                            />
-                                        </div>
-                                        <div className='w-1/2'>
-                                            <label className=' text-gray-600 font-semibold block  ' for='title'>
-                                                Title
+                                            <label className=' text-gray-600 font-semibold block  ' for='nameOfClass'>
+                                                Class
                                             </label>
                                             <select
                                                 className='block px-2 py-1 rounded-md w-full border border-gray-300 text-center'
-                                                name='title'
-                                                value={state.title}
-                                                id='title'
+                                                name='nameOfClass'
+                                                value={state.nameOfClass}
+                                                id='nameOfClass'
                                                 required
                                                 onChange={(e) => dispatch({
                                                     type: 'INPUT',
                                                     payload: { name: e.target.name, value: e.target.value }
                                                 })}
                                             >
-                                                <option className='' value='' disabled selected>--Title Type--</option>
-                                                <option value='Headmaster'>Headmaster </option>
-                                                <option value='Headmistress'>Headmistress </option>
-                                                <option value='Asst. Headmaster'>Asst. Headmaster </option>
-                                                <option value='Asst. Headmistress'>Asst. Headmistress </option>
-                                                <option value='Asst. Teacher'>Asst. Teacher</option>
-                                                <option value='Office Asst.'>Office Asst.</option>
-                                                <option value='Office Asst.'>Office Asst.</option>
-                                                <option value='MLSS'>MLSS</option>
+                                                <option className='' value='' disabled selected>--Select Class--</option>
+                                                <option value='six'>Six </option>
+                                                <option value='seven'>Seven </option>
+                                                <option value='eight'>Eight</option>
+                                                <option value='nine'>Nine</option>
+                                                <option value='ten'>Ten</option>
+
+                                            </select>
+                                        </div>
+                                        <div className='w-1/2'>
+                                            <label className=' text-gray-600 font-semibold block  ' for='section'>
+                                                Section
+                                            </label>
+                                            <select
+                                                className='block px-2 py-1 rounded-md w-full border border-gray-300 text-center'
+                                                name='section'
+                                                value={state.section}
+                                                id='section'
+                                                required
+                                                onChange={(e) => dispatch({
+                                                    type: 'INPUT',
+                                                    payload: { name: e.target.name, value: e.target.value }
+                                                })}
+                                            >
+                                                <option className='' value='' disabled selected>--Select Section--</option>
+                                                <option value='six'>Padma </option>
+                                                <option value='seven'>Meghna </option>
+                                                <option value='eight'>Jamuna</option>
+                                                <option value='nine'>Brahmaputra</option>
+
 
                                             </select>
                                         </div>
@@ -455,15 +342,18 @@ const AddTeachers = () => {
                                             })}
                                         ></textarea>
                                     </div>
+
                                     <div className=' mt-8 '>
-                                        <button
-                                            className={` px-4 py-2  m-auto block bg-indigo-500 hover:bg-indigo-700 duration-200 rounded-md font-semibold text-white text-lg disabled:bg-gray-500 `}
-                                            type='submit'
-                                        >
-                                            {
-                                                loading ? <img className='w-8 mx-16' src={blue} alt="" /> : <span className='w-10 mx-12 py-12'>Register</span>
-                                            }
-                                        </button>
+
+
+                                        <div className='flex items-center justify-center h-10  bg-indigo-500 hover:bg-indigo-700 duration-300	 rounded'>
+                                            <button className=' '>
+                                                <img className={`w-8 text-center  mx-auto ${!loading && "hidden"}`} src={blue} alt="" />
+                                            </button>
+                                            <button className={`w-full h-full text-xl text-white py-18 ${loading && "hidden"}`}>
+                                                <span  >Register</span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -480,4 +370,4 @@ const AddTeachers = () => {
     );
 };
 
-export default AddTeachers;
+export default AddStudents;

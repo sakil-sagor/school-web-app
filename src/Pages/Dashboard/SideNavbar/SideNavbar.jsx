@@ -32,7 +32,7 @@ const SideNavbar = () => {
                     {
                         teacher.teacherPhone && <>
                             <div>
-                                <Link className=" block py-1 border mb-3 hover:bg-blue-900 hover:text-white rounded-lg" to="/dashboard/studentsArea">All Students</Link>
+                                <Link className=" block py-1 border mb-3 hover:bg-blue-900 hover:text-white rounded-lg" to="/dashboard/students">All Students</Link>
                             </div>
 
                         </>

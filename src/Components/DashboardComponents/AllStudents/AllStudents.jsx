@@ -1,29 +1,32 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { AiFillDatabase } from "react-icons/ai";
-import Loading from "../Loading/Loading";
-import SingleTeacher from "./SingleTeacher";
-
-
-
-const Teachers = () => {
-    // const teachers = useLoaderData();
-    const [teachers, setTeachers] = useState([]);
-    const [loading, setLoading] = useState(true)
+import Loading from "../../Loading/Loading";
+import SingleStudent from "./SingleStudent";
+const AllStudents = () => {
+    const [allStudent, setAllStudent] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        async function fetchData() {
+        const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/v1/teacher/all'); // Replace with the actual route URL
-                const jsonData = await response.json();
-                setTeachers(jsonData.data);
-                setLoading(false)
+                const response = await axios.get('http://localhost:5000/api/v1/student/all');
+                setAllStudent(response.data.data);
+                setLoading(false);
             } catch (error) {
-                console.error(error);
+                setError(error);
+                setLoading(false);
             }
         }
+        fetchProducts();
 
-        fetchData();
-    }, []);
+
+
+
+
+    }, [])
+    console.log(allStudent)
 
     return (
         <div className="min-h-[80vh] bg-blue-50">
@@ -35,7 +38,7 @@ const Teachers = () => {
                         <div className="py-6">
                             <h2 className="text-green-600 font-semibold text-2xl "><AiFillDatabase className="inline mb-1"></AiFillDatabase> Techers list</h2>
                             <div className="flex items-center justify-between mt-4 px-2">
-                                <p>Total Result:{teachers.length} <span>{""}</span></p>
+                                {/* <p>Total Result:{teachers.length} <span>{""}</span></p> */}
                                 <div>
                                     <label htmlFor="">Search </label>
                                     <input className="border border-gray-400 p-1 bg-blue-50 rounded" type="text" />
@@ -53,7 +56,7 @@ const Teachers = () => {
                                     <tr className="text-left">
                                         <th className="px-4 py-2">ID</th>
                                         <th className="px-4 py-2">Name</th>
-                                        <th className="px-4 py-2">Subject</th>
+                                        <th className="px-4 py-2">Class</th>
                                         <th className="px-4 py-2">View Profile</th>
                                     </tr>
                                 </thead>
@@ -61,7 +64,7 @@ const Teachers = () => {
 
                                 <tbody>
                                     {
-                                        teachers.map((teacher, index) => <SingleTeacher key={teacher.id} index={index} teacher={teacher}></SingleTeacher>)
+                                        allStudent.map((student, index) => <SingleStudent key={student.id} index={index} student={student}></SingleStudent>)
                                     }
                                 </tbody>
 
@@ -78,4 +81,4 @@ const Teachers = () => {
     );
 };
 
-export default Teachers;
+export default AllStudents;
