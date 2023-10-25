@@ -3,10 +3,12 @@ import AddStudents from "../Components/DashboardComponents/AddStudents/AddStuden
 import AddTeachers from "../Components/DashboardComponents/AddTeachers/AddTeachers";
 import AllStudents from "../Components/DashboardComponents/AllStudents/AllStudents";
 import StudentDetails from "../Components/DashboardComponents/AllStudents/StudentDetails";
+import ExamFreePayment from "../Components/DashboardComponents/ExamFreePayment/ExamFreePayment";
 import Teachers from "../Components/Teachers/Teachers";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import PaymentArea from "../Pages/Dashboard/PaymentArea/PaymentArea";
 import ViewProfile from "../Pages/Dashboard/SideNavbar/ViewProfile";
 import StudentsArea from "../Pages/Dashboard/StudentsArea/StudentsArea";
 import TeachersArea from "../Pages/Dashboard/TeachersArea/TeachersArea";
@@ -48,7 +50,7 @@ const router = createBrowserRouter([
             },
 
             {
-                path: "/contactUs",
+                path: "/contactUs ",
                 element: <ContactUs></ContactUs>
             },
             {
@@ -119,6 +121,18 @@ const router = createBrowserRouter([
                         path: '/dashboard/students/addStudents',
                         element: <AddStudents></AddStudents>
                     },
+                ]
+            },
+            {
+                path: '/dashboard/payment',
+                element: <PaymentArea></PaymentArea>,
+                children: [
+                    {
+                        path: '/dashboard/payment',
+                        element: <ExamFreePayment></ExamFreePayment>,
+
+                    },
+
                 ]
             },
 

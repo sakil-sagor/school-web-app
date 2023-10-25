@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 
-const useAllStudents = () => {
+const useSearchBox = () => {
 
     const [allStudent, setAllStudent] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -28,4 +28,4 @@ const useAllStudents = () => {
 
 
 }
-export default useAllStudents;
+export default useSearchBox;

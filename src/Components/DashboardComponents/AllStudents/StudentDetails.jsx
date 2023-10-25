@@ -1,8 +1,9 @@
 import React from 'react';
 
 const StudentDetails = ({ student }) => {
+    console.log(student)
     return (
-        <div>
+        <div className='fl'>
 
         </div>
     );

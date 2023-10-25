@@ -52,36 +52,36 @@ const StudentProfile = ({ student }) => {
                         <hr />
                         <div className='grid grid-cols-1 md:grid-cols-2 my-2 '>
                             <div className='flex items-center'>
-                                <span className='w-24'>Department</span>
+                                <span className='w-24'>Class</span>
                                 <span>: {nameOfClass || "N/A"}</span>
                             </div>
                             <hr className='md:hidden my-2' />
                             <div className='flex items-center'>
-                                <span className='w-24'>Religion</span>
+                                <span className='w-24'>Section</span>
                                 <span>: {section || "N/A"}</span>
                             </div>
                         </div>
                         <hr />
                         <div className='grid grid-cols-1 md:grid-cols-2 my-2 '>
                             <div className='flex items-center'>
-                                <span className='w-24'>joining</span>
+                                <span className='w-24'>Roll</span>
                                 <span>: {classRoll || "N/A"}</span>
                             </div>
                             <hr className='md:hidden my-2' />
                             <div className='flex items-center'>
-                                <span className='w-24'>Gender</span>
+                                <span className='w-24'>Sift</span>
                                 <span>: {shift || "N/A"}</span>
                             </div>
                         </div>
                         <hr />
                         <div className='grid grid-cols-1 md:grid-cols-2 my-2 '>
                             <div className='flex items-center'>
-                                <span className='w-24'>Degree</span>
+                                <span className='w-24'>Gender</span>
                                 <span>: {gender || "N/A"}</span>
                             </div>
                             <hr className='md:hidden my-2' />
                             <div className='flex items-center'>
-                                <span className='w-24'>Blood Group</span>
+                                <span className='w-24'>Religion</span>
                                 <span>: {religion || "N/A"}</span>
                             </div>
                         </div>
@@ -93,7 +93,7 @@ const StudentProfile = ({ student }) => {
                             </div>
                             <hr className='md:hidden my-2' />
                             <div className='flex items-center'>
-                                <span className='w-24'>Email</span>
+                                <span className='w-24'>Blood Group</span>
                                 <span>: {bloodGroup || "N/A"}</span>
                             </div>
                         </div>
@@ -105,7 +105,7 @@ const StudentProfile = ({ student }) => {
                             </div>
                             <hr className='md:hidden my-2' />
                             <div className='flex items-center'>
-                                <span className='w-24'>Facebook</span>
+                                <span className='w-24'>Status</span>
                                 <span>: {status || "N/A"}</span>
                             </div>
 

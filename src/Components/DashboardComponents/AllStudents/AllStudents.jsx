@@ -11,7 +11,7 @@ const AllStudents = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/v1/student/all');
+                const response = await axios.get('https://school-ms.iitpark.com/api/v1/student/all');
                 setAllStudent(response.data.data);
                 setLoading(false);
             } catch (error) {
@@ -30,7 +30,7 @@ const AllStudents = () => {
 
     return (
         <div className="min-h-[80vh] bg-blue-50">
-            <div className="container mx-auto px-2">
+            <div className="container mx-auto px-2 ">
                 <br />
 
                 <div className="w-full max-w-screen-lg mx-auto bg-white  mt-8">
