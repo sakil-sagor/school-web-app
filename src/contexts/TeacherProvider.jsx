@@ -11,7 +11,7 @@ const TeacherProvider = ({ children }) => {
 
         if (teacherInfo?.teacherPhone) {
 
-            fetch(`https://school-ms.iitpark.com/api/v1/teacher/${teacherInfo?.teacherPhone}`,
+            fetch(`http://localhost:5000/api/v1/teacher/${teacherInfo?.teacherPhone}`,
                 {
                     headers: {
                         authorization: `bearer ${localStorage.getItem("accessToken")}`,

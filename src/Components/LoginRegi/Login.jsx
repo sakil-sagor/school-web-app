@@ -23,7 +23,7 @@ const Login = () => {
     const handleLogin = (event) => {
         event.preventDefault();
         setLoginflow(true)
-        fetch('https://school-ms.iitpark.com/api/v1/teacher/login', {
+        fetch('http://localhost:5000/api/v1/teacher/login', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',

@@ -13,7 +13,7 @@ const Teachers = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch('https://school-ms.iitpark.com/api/v1/teacher/all'); // Replace with the actual route URL
+                const response = await fetch('http://localhost:5000/api/v1/teacher/all'); // Replace with the actual route URL
                 const jsonData = await response.json();
                 setTeachers(jsonData.data);
                 setLoading(false)

@@ -11,7 +11,7 @@ const AllStudents = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('https://school-ms.iitpark.com/api/v1/student/all');
+                const response = await axios.get('http://localhost:5000/api/v1/student/all');
                 setAllStudent(response.data.data);
                 setLoading(false);
             } catch (error) {

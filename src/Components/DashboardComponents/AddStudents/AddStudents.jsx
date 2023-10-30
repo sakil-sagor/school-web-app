@@ -11,7 +11,6 @@ const AddStudents = () => {
     const [imageUrl, setImageUrl] = useState('');
 
     const initialState = {
-
         studentsName: "",
         fatherName: "",
         gender: "",
@@ -23,6 +22,34 @@ const AddStudents = () => {
         nameOfClass: "",
         section: '',
         address: "",
+        payment: {
+            examfee: {
+                halfYear: 0,
+                fullYear: 0,
+                pretest: 0,
+                test: 0,
+
+            },
+            sessionfee: {
+                admission: 0,
+                session: 0,
+            },
+            monthlyfee: {
+                january: 0,
+                february: 0,
+                march: 0,
+                april: 0,
+                may: 0,
+                june: 0,
+                july: 0,
+                august: 0,
+                september: 0,
+                october: 0,
+                november: 0,
+                december: 0,
+            }
+
+        },
 
     }
 
@@ -44,7 +71,35 @@ const AddStudents = () => {
         }
     }
 
+    const paymentdetail = {
+        examfee: {
+            halfYear: 0,
+            fullYear: 0,
+            pretest: 0,
+            test: 0,
 
+        },
+        sessionfee: {
+            admission: 0,
+            session: 0,
+        },
+        monthlyfee: {
+            january: 0,
+            february: 0,
+            march: 0,
+            april: 0,
+            may: 0,
+            june: 0,
+            july: 0,
+            august: 0,
+            september: 0,
+            october: 0,
+            november: 0,
+            december: 0,
+
+        }
+
+    }
     const [state, dispatch] = useReducer(reducer, initialState)
 
 
@@ -56,13 +111,8 @@ const AddStudents = () => {
     const addStudentsData = async (e) => {
         e.preventDefault()
         setLoading(true)
-
-
-
-
-
         try {
-            const response = await fetch('https://school-ms.iitpark.com/api/v1/student/registration', {
+            const response = await fetch('http://localhost:5000/api/v1/student/registration', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
