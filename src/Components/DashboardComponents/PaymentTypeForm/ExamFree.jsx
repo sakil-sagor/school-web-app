@@ -10,7 +10,8 @@ const ExamFree = ({ paymentType, searchResult, againFetch, setAgainFetch }) => {
     console.log(studentResult);
     const fee = {
         money,
-        payOption
+        payOption,
+        type: "examfee",
     }
 
     const handleSubmit = (e) => {
@@ -25,10 +26,12 @@ const ExamFree = ({ paymentType, searchResult, againFetch, setAgainFetch }) => {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
-                if (data.data.modifiedCount) {
+                if (data.status === "Success") {
                     toast.success("Successfully payment")
                     setAgainFetch(againFetch + 1)
+                }
+                if (data.data.error) {
+                    toast.error('Error submitting Fee', error);
                 }
             })
             .catch((error) => {

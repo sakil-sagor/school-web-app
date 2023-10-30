@@ -36,8 +36,8 @@ const ExamFreePayment = () => {
 
 
             <ExamFree searchResult={searchResult} paymentType={paymentType} againFetch={againFetch} setAgainFetch={setAgainFetch}></ExamFree>
-            <SessionFee paymentType={paymentType}></SessionFee>
-            <MonthlyFee paymentType={paymentType}></MonthlyFee>
+            <SessionFee searchResult={searchResult} paymentType={paymentType} againFetch={againFetch} setAgainFetch={setAgainFetch} ></SessionFee>
+            <MonthlyFee searchResult={searchResult} paymentType={paymentType} againFetch={againFetch} setAgainFetch={setAgainFetch}></MonthlyFee>
 
 
 

@@ -16,7 +16,7 @@ const PaymentSearchStd = ({ searchResult, setSearchText, searchText, paymentType
                         <div className=' space-x-2 '>
 
                             <button onClick={(e) => setPaymentType(e.target.name)} className={` hover:bg-pink-700 duration-200 text-white rounded px-3 py-1 ${paymentType === "exam-fee" ? "bg-pink-700" : "bg-gray-500"}`} name="exam-fee">Exam Fee</button>
-                            <button onClick={(e) => setPaymentType(e.target.name)} className={` hover:bg-pink-700 duration-200 text-white rounded px-3 py-1 ${paymentType === "session-fee" ? "bg-pink-700" : "bg-gray-500"}`} name="session-fee">Session Fee</button>
+                            <button onClick={(e) => setPaymentType(e.target.name)} className={` hover:bg-pink-700 duration-200 text-white rounded px-3 py-1 ${paymentType === "session-fee" ? "bg-pink-700" : "bg-gray-500"}`} name="session-fee">Others Fee</button>
                             <button onClick={(e) => setPaymentType(e.target.name)} className={` hover:bg-pink-700 duration-200 text-white rounded px-3 py-1 ${paymentType === "monthly-fee" ? "bg-pink-700" : "bg-gray-500"}`} name="monthly-fee">Monthly Fee</button>
                             {/* <button onClick={(e) => setPaymentType(e.target.name)} className=' bg-pink-500 hover:bg-pink-700 duration-200 text-white rounded px-3 py-1' name="other-fee">Others Fee</button> */}
                         </div>
