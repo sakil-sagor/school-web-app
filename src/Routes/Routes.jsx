@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddStudents from "../Components/DashboardComponents/AddStudents/AddStudents";
 import AddTeachers from "../Components/DashboardComponents/AddTeachers/AddTeachers";
+import AllPaymentCalculation from "../Components/DashboardComponents/AllPaymentCalculation/AllPaymentCalculation";
 import AllStudents from "../Components/DashboardComponents/AllStudents/AllStudents";
 import StudentDetails from "../Components/DashboardComponents/AllStudents/StudentDetails";
 import ExamFreePayment from "../Components/DashboardComponents/ExamFreePayment/ExamFreePayment";
@@ -130,6 +131,16 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/payment',
                         element: <ExamFreePayment></ExamFreePayment>,
+
+                    },
+                    {
+                        path: '/dashboard/payment/all',
+                        element: <ExamFreePayment></ExamFreePayment>,
+
+                    },
+                    {
+                        path: '/dashboard/payment/allcalculation',
+                        element: <AllPaymentCalculation></AllPaymentCalculation>,
 
                     },
 

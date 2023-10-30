@@ -18,7 +18,7 @@ const SessionFee = ({ paymentType, searchResult, againFetch, setAgainFetch }) =>
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(fee);
-        fetch(`http://localhost:5000/api/v1/payment/student/${searchResult[0]?._id}`, {
+        fetch(`https://school-ms.iitpark.com/api/v1/payment/student/${searchResult[0]?._id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

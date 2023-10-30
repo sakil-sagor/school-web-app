@@ -15,7 +15,7 @@ const ExamFreePayment = () => {
     const size = 10;
     useEffect(() => {
         setLoading(true)
-        const url = ` http://localhost:5000/api/v1/student?search=${searchText}`
+        const url = ` https://school-ms.iitpark.com/api/v1/student?search=${searchText}`
         fetch(url)
             .then(res => res.json())
             .then(data => {

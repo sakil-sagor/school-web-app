@@ -17,7 +17,7 @@ const ExamFree = ({ paymentType, searchResult, againFetch, setAgainFetch }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch(`http://localhost:5000/api/v1/payment/student/${searchResult[0]?._id}`, {
+        fetch(`https://school-ms.iitpark.com/api/v1/payment/student/${searchResult[0]?._id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

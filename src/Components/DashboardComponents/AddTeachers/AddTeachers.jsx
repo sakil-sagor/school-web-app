@@ -99,7 +99,7 @@ const AddTeachers = () => {
         state.image = imageUrl;
         console.log(state)
         try {
-            const response = await fetch('http://localhost:5000/api/v1/teacher/registration', {
+            const response = await fetch('https://school-ms.iitpark.com/api/v1/teacher/registration', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
