@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AdmitCardPrint from '../PrintArea/AdmitCardPrint';
 
 const ExamFree = ({ paymentType, searchResult, againFetch, setAgainFetch }) => {
     const [money, setMoney] = useState(0)
     const [payOption, setPayOption] = useState('')
     let studentResult = searchResult[0];
 
-    console.log(studentResult);
     const fee = {
         money,
         payOption,
@@ -48,6 +48,7 @@ const ExamFree = ({ paymentType, searchResult, againFetch, setAgainFetch }) => {
                 <div className='bg-blue-300 p-4 rounded-md'>
                     <div>
                         <h3 className='text-2xl text-pink-700 mb-2'>Exam Fee</h3>
+                        <button>Print</button>
                     </div>
                     <hr />
                     <div className='flex justify-between py-2'>
@@ -96,6 +97,10 @@ const ExamFree = ({ paymentType, searchResult, againFetch, setAgainFetch }) => {
                     </form>
                 </div>
             }
+
+            <div>
+                <AdmitCardPrint studentResult={studentResult}></AdmitCardPrint>
+            </div>
             <ToastContainer
                 position="top-right"
                 autoClose={1000}
