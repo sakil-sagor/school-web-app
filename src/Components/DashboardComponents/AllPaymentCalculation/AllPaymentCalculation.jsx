@@ -23,7 +23,7 @@ const AllPaymentCalculation = () => {
             examfee: paymentSummary?.paymentSummary?.examfeeTotal,
             sessionfee: paymentSummary?.paymentSummary?.sessionfeeTotal,
             monthlyfee: paymentSummary?.paymentSummary?.monthlyfeeTotal,
-            total: paymentSummary?.paymentSummary?.examfeeTotal + paymentSummary?.paymentSummary?.sessionfeeTotal + paymentSummary?.paymentSummary?.monthlyfeeTotal,
+            // total: paymentSummary?.paymentSummary?.examfeeTotal + paymentSummary?.paymentSummary?.sessionfeeTotal + paymentSummary?.paymentSummary?.monthlyfeeTotal,
         }
         setLoading(true)
         try {
