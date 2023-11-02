@@ -8,6 +8,7 @@ import ExamFreePayment from "../Components/DashboardComponents/ExamFreePayment/E
 import Teachers from "../Components/Teachers/Teachers";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
+
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import PaymentArea from "../Pages/Dashboard/PaymentArea/PaymentArea";
 import ViewProfile from "../Pages/Dashboard/SideNavbar/ViewProfile";
@@ -51,15 +52,13 @@ const router = createBrowserRouter([
             },
 
             {
-                path: "/contactUs ",
+                path: "/contactus",
                 element: <ContactUs></ContactUs>
             },
             {
                 path: "/login",
                 element: <Registration></Registration>
             },
-
-
 
         ]
     },
