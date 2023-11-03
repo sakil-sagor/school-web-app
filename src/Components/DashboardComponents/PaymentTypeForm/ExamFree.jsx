@@ -6,7 +6,9 @@ import AdmitCardPrint from '../PrintArea/AdmitCardPrint';
 const ExamFree = ({ paymentType, searchResult, againFetch, setAgainFetch }) => {
     const [money, setMoney] = useState(0)
     const [payOption, setPayOption] = useState('')
+    const [hideShow, setHideShow] = useState(false)
     let studentResult = searchResult[0];
+
 
     const fee = {
         money,
@@ -40,15 +42,25 @@ const ExamFree = ({ paymentType, searchResult, againFetch, setAgainFetch }) => {
             });
 
     };
+    const handleShowHide = () => {
+        setHideShow(!hideShow)
+    }
+    console.log(studentResult);
     return (
-        <div>
+        <div className=''>
 
             {
                 paymentType === "exam-fee" &&
                 <div className='bg-blue-300 p-4 rounded-md'>
-                    <div>
-                        <h3 className='text-2xl text-pink-700 mb-2'>Exam Fee</h3>
-                        <button>Print</button>
+                    <div className='flex justify-between mb-2'>
+                        <h3 className='text-2xl text-pink-700 mb-2 '>Exam Fee</h3>
+                        <div>
+                            {
+                                studentResult &&
+                                <button className={`p-2 rounded  cursor-pointer bg-blue-500 text-white hover:bg-blue-700 `} onClick={handleShowHide}>Admit Card</button>
+                            }
+
+                        </div>
                     </div>
                     <hr />
                     <div className='flex justify-between py-2'>
@@ -97,10 +109,17 @@ const ExamFree = ({ paymentType, searchResult, againFetch, setAgainFetch }) => {
                     </form>
                 </div>
             }
+            {
+                studentResult &&
 
-            <div>
-                <AdmitCardPrint studentResult={studentResult}></AdmitCardPrint>
-            </div>
+                <div>
+
+                    {
+                        hideShow && <AdmitCardPrint studentResult={studentResult}></AdmitCardPrint>
+                    }
+
+                </div>
+            }
             <ToastContainer
                 position="top-right"
                 autoClose={1000}
