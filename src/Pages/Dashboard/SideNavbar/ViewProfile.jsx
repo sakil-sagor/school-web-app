@@ -1,7 +1,9 @@
 
 
-import profileImage from "../../../assets/pro1.png";
+import AdminArea from "../../../Components/DashboardComponents/AdminArea/AdminArea";
 import { TeacherState } from "../../../contexts/TeacherProvider";
+
+
 
 const ViewProfile = () => {
     const { teacher } = TeacherState()
@@ -9,15 +11,17 @@ const ViewProfile = () => {
     return (
         <div className="pb-24 pt-4">
 
-            <div className=" mx-auto px-2 lg:pl-16">
+            <div className=" mx-auto px-2 lg:pl-16 capitalize">
                 <div >
-                    <h1 className="text-indigo-900 font-semibold text-2xl mb-6 ml-4">Admin Profile</h1>
+                    <p className="font-bold ">Role: <button className="bg-green-600 px-3 py-1 capitalize rounded-2xl mt-4 text-white">{teacher?.role}</button> </p>
+                    {/* <h1 className="text-indigo-900 font-semibold text-2xl mb-6 ml-4">Admin Profile</h1> */}
                 </div>
-                <hr />
+                {/* <hr /> */}
 
                 <div className="my-6 ">
-                    <img className="w-16 rounded-full block mx-auto" src={profileImage} alt="" />
-                    <p className="   mt-4"><span className='font-bold '>  Name : </span> {teacher?.teacherName}</p>
+
+
+                    <AdminArea></AdminArea>
                 </div>
 
             </div>

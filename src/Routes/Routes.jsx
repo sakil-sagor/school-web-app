@@ -9,8 +9,11 @@ import Teachers from "../Components/Teachers/Teachers";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 
+import UpdateTeacher from "../Components/DashboardComponents/AdminArea/UpdateTeacher";
+import CommitteeSection from "../Components/DashboardComponents/CommitteeSection/CommitteeSection";
 import AddNotice from "../Components/DashboardComponents/NoticeBoradAll/AddNotice";
 import NoticeBoradAll from "../Components/DashboardComponents/NoticeBoradAll/NoticeBoradAll";
+import StaffSection from "../Components/DashboardComponents/StaffSection/StaffSection";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import NoticeArea from "../Pages/Dashboard/NoticeArea/NoticeArea";
 import PaymentArea from "../Pages/Dashboard/PaymentArea/PaymentArea";
@@ -76,24 +79,36 @@ const router = createBrowserRouter([
                 element: <ViewProfile></ViewProfile>
             },
             {
-                path: '/dashboard/teachers',
+                path: '/dashboard/updateteacher',
+                element: <UpdateTeacher></UpdateTeacher>
+            },
+            {
+                path: '/dashboard/staff',
                 element: <TeachersArea></TeachersArea>,
                 children: [
 
 
                     {
-                        path: '/dashboard/teachers',
+                        path: '/dashboard/staff',
                         element: <Teachers></Teachers>,
 
                     },
                     {
-                        path: '/dashboard/teachers/all',
+                        path: '/dashboard/staff/allTeacher',
                         element: <Teachers></Teachers>,
 
                     },
 
                     {
-                        path: '/dashboard/teachers/addTeacher',
+                        path: '/dashboard/staff/allstaff',
+                        element: <StaffSection></StaffSection>
+                    },
+                    {
+                        path: '/dashboard/staff/allcommittee',
+                        element: <CommitteeSection></CommitteeSection>
+                    },
+                    {
+                        path: '/dashboard/staff/addnew',
                         element: <AddTeachers></AddTeachers>
                     },
                 ]
