@@ -16,7 +16,7 @@ const DashboardLayout = () => {
                     <div className="sideNabbar md:col-span-3 lg:col-span-3 xl:col-span-2 shadow-2xl text-center py-8 text-lg  text-indigo-900 font-semibold rounded-xl px-2 border">
                         <SideNavbar></SideNavbar>
                     </div>
-                    <div className="md:col-span-9 lg:col-span-9 xl:col-span-10 shadow-2xl rounded-xl border">
+                    <div className="md:col-span-9 lg:col-span-9 xl:col-span-10 shadow-2xl rounded-xl border bg-blue-50">
 
                         <Outlet></Outlet>
 

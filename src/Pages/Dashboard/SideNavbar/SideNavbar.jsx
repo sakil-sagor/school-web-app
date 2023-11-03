@@ -45,10 +45,14 @@ const SideNavbar = () => {
 
                         </>
                     }
+                    {
+                        teacher.teacherPhone && <>
+                            <div>
+                                <Link className=" block py-1 border mb-3 hover:bg-blue-900 hover:text-white rounded-lg" to="/dashboard/notice">Notice</Link>
+                            </div>
 
-
-
-
+                        </>
+                    }
                     {
                         <div className='mt-24'>
                             <button className=' px-6 py-1 text-white bg-pink-800 hover:bg-pink-700 rounded' onClick={handleLogOut}> Log Out </button>

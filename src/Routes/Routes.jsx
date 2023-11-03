@@ -9,7 +9,10 @@ import Teachers from "../Components/Teachers/Teachers";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 
+import AddNotice from "../Components/DashboardComponents/NoticeBoradAll/AddNotice";
+import NoticeBoradAll from "../Components/DashboardComponents/NoticeBoradAll/NoticeBoradAll";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import NoticeArea from "../Pages/Dashboard/NoticeArea/NoticeArea";
 import PaymentArea from "../Pages/Dashboard/PaymentArea/PaymentArea";
 import ViewProfile from "../Pages/Dashboard/SideNavbar/ViewProfile";
 import StudentsArea from "../Pages/Dashboard/StudentsArea/StudentsArea";
@@ -143,6 +146,28 @@ const router = createBrowserRouter([
 
                     },
 
+                ]
+            },
+            {
+                path: '/dashboard/notice',
+                element: <NoticeArea></NoticeArea>,
+                children: [
+
+
+                    {
+                        path: '/dashboard/notice',
+                        element: <NoticeBoradAll></NoticeBoradAll>,
+                    },
+                    {
+                        path: '/dashboard/notice/all',
+                        element: <NoticeBoradAll></NoticeBoradAll>,
+
+                    },
+
+                    {
+                        path: '/dashboard/notice/addnotice',
+                        element: <AddNotice></AddNotice>
+                    },
                 ]
             },
 
