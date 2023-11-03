@@ -53,7 +53,7 @@ const AddNotice = () => {
         // const formData = new FormData();
         // formData.append('title', title);
         // formData.append('image', imageUrl);
-        console.log({ title, imageUrl });
+        // console.log({ title, imageUrl });
 
         try {
             const response = await fetch('https://school-ms.iitpark.com/api/v1/notice/allNotice', {
@@ -66,7 +66,7 @@ const AddNotice = () => {
 
             if (response.ok) {
                 toast.success("success");
-                setImageFile(null)
+                document.getElementById('image-file').value = null;
                 setTitle('')
                 setLoading(false)
             } else {
@@ -112,7 +112,7 @@ const AddNotice = () => {
                                         <label className=' text-gray-600 font-semibold block mb-2 '>
                                             Add File
                                         </label>
-                                        <input className='py-1 px-2 rounded-md border border-gray-300' type="file" value={imageFile} onChange={handleImageChange} />
+                                        <input className='py-1 px-2 rounded-md border border-gray-300 ' id='image-file' type="file" onChange={handleImageChange} />
                                     </div>
 
 
