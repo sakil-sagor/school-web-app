@@ -19,7 +19,7 @@ const useAllNotices = () => {
             try {
 
                 // const url = `https://bloodserver.lifezet.com/api/v1/donor?donationStatus=active&fields=-password&sort=lastDonateDate,-totalDonate&page=${page + 1}&limit=${limit}`
-                let url = `http://localhost:5000/api/v1/notice/allNotice?page=${page + 1}&limit=${limit}`
+                let url = `https://school-ms.iitpark.com/api/v1/notice/allNotice?page=${page + 1}&limit=${limit}`
 
 
                 const response = await axios.get(url);

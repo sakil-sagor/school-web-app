@@ -15,7 +15,7 @@ const AllPaymentCalculation = () => {
 
     // for total paymet all 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/v1/payment/student/allPayment')
+        axios.get('https://school-ms.iitpark.com/api/v1/payment/student/allPayment')
             .then((response) => {
                 setPaymentSummary(response.data);
 
@@ -27,7 +27,7 @@ const AllPaymentCalculation = () => {
 
     // for single day payment 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/v1/payment/getAllByDay')
+        axios.get('https://school-ms.iitpark.com/api/v1/payment/getAllByDay')
             .then((response) => {
                 // single payment all data
                 setTotalDayPayment(response.data.data);
@@ -54,7 +54,7 @@ const AllPaymentCalculation = () => {
 
         setLoading(true)
         try {
-            const response = await fetch('http://localhost:5000/api/v1/payment/student/allPayment', {
+            const response = await fetch('https://school-ms.iitpark.com/api/v1/payment/student/allPayment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

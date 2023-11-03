@@ -56,7 +56,7 @@ const AddNotice = () => {
         console.log({ title, imageUrl });
 
         try {
-            const response = await fetch('http://localhost:5000/api/v1/notice/allNotice', {
+            const response = await fetch('https://school-ms.iitpark.com/api/v1/notice/allNotice', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

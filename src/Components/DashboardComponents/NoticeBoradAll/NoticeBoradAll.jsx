@@ -16,7 +16,7 @@ const NoticeBoradAll = () => {
         // setLoading(true)
         const fetchProducts = async () => {
             try {
-                let url = `http://localhost:5000/api/v1/notice/allNotice?page=${page + 1}&limit=${limit}`
+                let url = `https://school-ms.iitpark.com/api/v1/notice/allNotice?page=${page + 1}&limit=${limit}`
                 const response = await axios.get(url);
                 setAllNotice(response?.data?.data?.result);
                 setCount(response?.data?.data?.pageCount);
