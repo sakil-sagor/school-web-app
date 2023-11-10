@@ -39,7 +39,7 @@ const NoticeBoradAll = () => {
         <div className="min-h-[80vh] bg-blue-50">
             <div className="container mx-auto px-2">
                 <br />
-                <NoticeBoard allNotice={allNotice} page={page} setPage={setPage} count={count} total={total}  ></NoticeBoard>
+                <NoticeBoard allNotice={allNotice} page={page} setPage={setPage} count={count} total={total} loading={loading} ></NoticeBoard>
             </div>
         </div>
     );

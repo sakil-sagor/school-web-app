@@ -6,6 +6,7 @@ const NoticeArea = () => {
     const routes = [
         { id: 1, path: '/dashboard/notice/all', name: 'All Notice' },
         { id: 2, path: '/dashboard/notice/addnotice', name: 'Add-Notice' },
+        { id: 3, path: '/dashboard/notice/highlightnotice', name: 'Highlight-Notice' },
     ];
     return (
         <div>

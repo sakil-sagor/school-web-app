@@ -6,8 +6,11 @@ const HIghlightNotice = () => {
                 <div className="flex justify-center">
                     <span className="text-white bg-blue-500 p-2">Notice: </span>
                     <marquee className="p-2 text-green-800 font-semibold" behavior="scroll" direction="left" scrollamount="5">
-                        This text moves from left to right.
+                        <div>
+                            <p>This text moves from left to right.</p>
+                        </div>
                     </marquee>
+
                 </div>
             </div>
         </div>

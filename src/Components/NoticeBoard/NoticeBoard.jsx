@@ -1,9 +1,11 @@
 import { AiFillDatabase } from "react-icons/ai";
 import SingleNotice from "./SingleNotice";
+import SkeletonNotice from "./SkeletonNotice";
 
-const NoticeBoard = ({ allNotice, page, setPage, count, total }) => {
+const NoticeBoard = ({ allNotice, page, setPage, count, total, loading }) => {
     // const [page, setPage, count, total] = useAllNotices();
     // console.log(total);
+    const skleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     return (
 
         <div className="w-full  mx-auto bg-white  ">
@@ -28,11 +30,25 @@ const NoticeBoard = ({ allNotice, page, setPage, count, total }) => {
                             <th className="px-4 py-2">View Profile</th>
                         </tr>
                     </thead>
-                    <tbody className="my-2">
-                        {
-                            allNotice.map((notice, index) => <SingleNotice key={notice.id} index={index} notice={notice}></SingleNotice>)
-                        }
-                    </tbody>
+                    {
+                        loading ?
+                            <tbody className="my-2">
+                                {
+                                    skleton.map((skel, index) => <SkeletonNotice key={index} index={index}></SkeletonNotice>)
+                                }
+
+
+
+                            </tbody>
+                            :
+                            <tbody className="my-2">
+                                {
+                                    allNotice.map((notice, index) => <SingleNotice key={notice.id} index={index} notice={notice}></SingleNotice>)
+                                }
+                            </tbody>
+                    }
+
+
                 </table>
                 <div className=' ' >
                     {

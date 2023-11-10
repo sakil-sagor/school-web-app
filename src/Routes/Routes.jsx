@@ -9,6 +9,7 @@ import Teachers from "../Components/Teachers/Teachers";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 
+import AddHighlightNotice from "../Components/DashboardComponents/AddHighlightNotice/AddHighlightNotice";
 import UpdateTeacher from "../Components/DashboardComponents/AdminArea/UpdateTeacher";
 import CommitteeSection from "../Components/DashboardComponents/CommitteeSection/CommitteeSection";
 import AddNotice from "../Components/DashboardComponents/NoticeBoradAll/AddNotice";
@@ -182,6 +183,11 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/notice/addnotice',
                         element: <AddNotice></AddNotice>
+                    },
+
+                    {
+                        path: '/dashboard/notice/highlightnotice',
+                        element: <AddHighlightNotice></AddHighlightNotice>
                     },
                 ]
             },
