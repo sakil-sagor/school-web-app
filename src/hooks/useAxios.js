@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { useEffect } from 'react';
+import axios from "axios";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // const instance = axios.create({
@@ -8,31 +8,35 @@ import { useNavigate } from "react-router-dom";
 // })
 
 export const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000/api/v1',
-    withCredentials: true
+  baseURL: "https://school-web-demo-server.vercel.app/api/v1",
+  withCredentials: true,
 });
 
 const useAxios = () => {
-    // return instance;
-    // const { logOut } = useContext(AuthContext);
+  // return instance;
+  // const { logOut } = useContext(AuthContext);
 
-    const navigate = useNavigate();
-    useEffect(() => {
-        axiosSecure.interceptors.response.use(res => {
-            return res;
-        }, error => {
-            console.log('error tracked in the interceptor', error.response)
-            if (error.response.status === 401 || error.response.status === 403) {
-                console.log('logout the user')
-                    // logOut()
-                    //     .then(() => {
-                    //         navigate('/registration')
-                    //     })
-                    .catch(error => console.log(error))
-            }
-        })
-    }, [])
+  const navigate = useNavigate();
+  useEffect(() => {
+    axiosSecure.interceptors.response.use(
+      (res) => {
+        return res;
+      },
+      (error) => {
+        console.log("error tracked in the interceptor", error.response);
+        if (error.response.status === 401 || error.response.status === 403) {
+          console
+            .log("logout the user")
+            // logOut()
+            //     .then(() => {
+            //         navigate('/registration')
+            //     })
+            .catch((error) => console.log(error));
+        }
+      }
+    );
+  }, []);
 
-    return axiosSecure;
+  return axiosSecure;
 };
 export default useAxios;
