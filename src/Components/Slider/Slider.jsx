@@ -16,8 +16,8 @@ import HomeNoticeBoard from "../HomeNoticeBoard/HomeNoticeBoard";
 const Slider = () => {
   return (
     <div className="">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-x-2  ">
-        <div className="slider md:col-span-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-2  ">
+        <div className="slider lg:col-span-8">
           <Swiper
             spaceBetween={30}
             centeredSlides={true}
@@ -30,7 +30,7 @@ const Slider = () => {
             // }}
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
-            className="mySwiper max-h-[60vh]  w-full mt-5"
+            className="mySwiper max-h-[60vh]  w-full "
           >
             <SwiperSlide>
               <div className="w-full ">
@@ -59,7 +59,7 @@ const Slider = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div className="md:col-span-4 slider  mt-5  max-h-[60vh]">
+        <div className="lg:col-span-4 slider  mt-10  max-h-[60vh]">
           <div className="    w-full  h-full">
             <HomeNoticeBoard></HomeNoticeBoard>
           </div>
