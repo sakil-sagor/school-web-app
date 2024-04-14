@@ -9,7 +9,7 @@ const HomeNoticeBoard = () => {
   const [page, setPage] = useState(0);
   const [count, setCount] = useState(0);
   const [total, setTotal] = useState(0);
-  const limit = 6;
+  const limit = 5;
 
   useEffect(() => {
     // setLoading(true)
@@ -33,7 +33,7 @@ const HomeNoticeBoard = () => {
   }, [page]);
 
   return (
-    <div className=" bg-blue-800 h-full">
+    <div className=" bg-blue-50 h-full">
       <div className="container mx-auto p-2 ">
         <HomeNotice
           allNotice={allNotice}

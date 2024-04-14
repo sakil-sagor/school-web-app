@@ -30,7 +30,7 @@ const Slider = () => {
             // }}
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
-            className="mySwiper max-h-[60vh]  w-full"
+            className="mySwiper max-h-[60vh]  w-full mt-5"
           >
             <SwiperSlide>
               <div className="w-full ">
@@ -59,7 +59,7 @@ const Slider = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div className="md:col-span-4 slider mt-5">
+        <div className="md:col-span-4 slider  mt-5  max-h-[60vh]">
           <div className="    w-full  h-full">
             <HomeNoticeBoard></HomeNoticeBoard>
           </div>
