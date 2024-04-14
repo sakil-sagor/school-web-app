@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import blue from "../../../assets/blue.gif";
 import useAxios from "../../../hooks/useAxios";
+import AllHighlightNotice from "./AllHighlightNotice";
+import HighlighNoticeForm from "./HighlighNoticeForm";
 const AddHighlightNotice = () => {
   const [title, setTitle] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [allNotice, setAllNotice] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const axiosSecure = useAxios();
+  const [reload, setReload] = useState(0);
 
   const handleInputChange = (e) => {
     setTitle(e.target.value);
@@ -14,7 +20,7 @@ const AddHighlightNotice = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
     console.log(title);
     try {
       const response = await axiosSecure.post(
@@ -31,6 +37,7 @@ const AddHighlightNotice = () => {
         setLoading(false);
         setTitle("");
         toast.success("success");
+        setReload(reload + 1);
       } else {
         console.error("Error adding notice");
         toast.error("Error submitting form");
@@ -44,94 +51,67 @@ const AddHighlightNotice = () => {
     }
   };
 
-  // const handleFormSubmit = async (e) => {
-  //     e.preventDefault()
-  //     setLoading(true)
-  //     try {
-  //         const response = await fetch('https://school-web-demo-server.vercel.app/api/v1/notice/highlightNotice', {
-  //             method: 'POST',
-  //             headers: {
-  //                 'Content-Type': 'application/json',
-  //             },
-  //             body: JSON.stringify({ title }),
-  //         });
+  useEffect(() => {
+    // setLoading(true)
+    const fetchProducts = async () => {
+      try {
+        let url = `http://localhost:5000/api/v1/notice/highlightNotice`;
+        const response = await axios.get(url);
+        setAllNotice(response?.data?.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, [reload]);
 
-  //         if (response.ok) {
-  //             toast.success("success");
+  // delete highlight notice
+  const deleteHighLigeNotice = async (noticeId) => {
+    try {
+      const response = await axiosSecure.delete(
+        `http://localhost:5000/api/v1/notice/highlightNotice?noticeId=${noticeId}`
+      );
 
-  //             setLoading(false)
-  //         } else {
-  //             console.error('Error adding notice');
-  //             toast.error('Error submitting form');
-  //             setLoading(false)
-  //         }
-  //     } catch (error) {
-  //         console.error('Error:', error);
-  //         toast.error('Error submitting form:', error);
-  //         setLoading(false)
-  //     }
-  // };
+      const data = response.data;
+
+      if (data.status === "success") {
+        toast.success("Successfully Removed");
+        const remainingData = allNotice.filter(
+          (product) => product?._id !== noticeId
+        );
+        setAllNotice(remainingData);
+      }
+    } catch (error) {
+      console.error("Error while removing notice:", error);
+    }
+  };
   return (
     <div className="bg-blue-50 min-h-screen">
       <div className="full-width-all pt-4  pb-24 ">
-        <div className="w-full md:w-3/4 lg:w-2/4 m-auto pt-12">
+        <div className="w-fullm-auto p-2">
           <div className="bg-blue-50 ">
-            <div className=" ">
-              <div className=" border shadow-md shadow-blue-300 px-2 py-6 md:p-8 text-center rounded-md">
-                <h2 className="text-2xl font-bold text-blue-700">Add Notice</h2>
+            <div className="grid grid-cols-2 gap-2">
+              <div className=" ">
+                <div className=" border shadow-md shadow-blue-300 px-2 py-6 md:p-8 text-center rounded-md">
+                  <h2 className="text-xl font-bold text-blue-700">
+                    Add Highlight Notice
+                  </h2>
+                </div>
+                <HighlighNoticeForm
+                  handleFormSubmit={handleFormSubmit}
+                  handleInputChange={handleInputChange}
+                  blue={blue}
+                  loading={loading}
+                  title={title}
+                ></HighlighNoticeForm>
               </div>
-              <div className=" mt-4 ">
-                <form
-                  className=" border shadow-xl shadow-blue-300 px-2 py-6 md:p-8 rounded-md"
-                  onSubmit={handleFormSubmit}
-                >
-                  <div className="flex flex-col w-full">
-                    <label className=" text-gray-600 font-semibold block mb-2">
-                      Notice Title
-                    </label>
-
-                    <textarea
-                      required
-                      className="py-1 rounded-md  px-2  border border-gray-300"
-                      name="address"
-                      id="address"
-                      value={title}
-                      cols="30"
-                      rows="2"
-                      onChange={handleInputChange}
-                    ></textarea>
-                    {/* <input
-                                            required
-                                            className='py-1 px-2 rounded-md border border-gray-300'
-                                            type="text"
-                                            placeholder=" Notice Title"
-                                            value={title}
-                                            onChange={handleInputChange}
-
-                                        /> */}
-                  </div>
-
-                  <div className=" mt-8 ">
-                    <div className="flex items-center justify-center h-10  bg-indigo-500 hover:bg-indigo-700 duration-300	 rounded">
-                      <button className=" ">
-                        <img
-                          className={`w-8 text-center  mx-auto ${
-                            !loading && "hidden"
-                          }`}
-                          src={blue}
-                          alt=""
-                        />
-                      </button>
-                      <button
-                        className={`w-full h-full text-xl text-white py-18 ${
-                          loading && "hidden"
-                        }`}
-                      >
-                        <span>Add Notice</span>
-                      </button>
-                    </div>
-                  </div>
-                </form>
+              <div>
+                <AllHighlightNotice
+                  allNotice={allNotice}
+                  deleteHighLigeNotice={deleteHighLigeNotice}
+                ></AllHighlightNotice>
               </div>
             </div>
           </div>
