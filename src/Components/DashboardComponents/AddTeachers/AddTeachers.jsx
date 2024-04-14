@@ -522,10 +522,10 @@ const AddTeachers = () => {
                         <option value="Headmaster">Headmaster </option>
                         <option value="Headmistress">Headmistress </option>
                         <option value="Asst. Headmaster">
-                          Asst. Headmaster{" "}
+                          Asst. Headmaster
                         </option>
                         <option value="Asst. Headmistress">
-                          Asst. Headmistress{" "}
+                          Asst. Headmistress
                         </option>
                         <option value="Asst. Teacher">Asst. Teacher</option>
                         <option value="Office Asst.">Office Asst.</option>

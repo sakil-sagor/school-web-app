@@ -34,7 +34,7 @@ const Teachers = () => {
           <div className="overflow-x-auto sm:px-1 md:p-8">
             <div className="py-6">
               <h2 className="text-green-600 font-semibold text-2xl ">
-                <AiFillDatabase className="inline mb-1"></AiFillDatabase>{" "}
+                <AiFillDatabase className="inline mb-1"></AiFillDatabase>
                 Techers list
               </h2>
               <div className="flex items-center justify-between mt-4 px-2">

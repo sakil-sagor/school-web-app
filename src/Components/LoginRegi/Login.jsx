@@ -55,8 +55,7 @@ const Login = () => {
           <div className="md:w-96 px-4 py-8  bg-white rounded-md shadow-2xl shadow-blue-300">
             <div className="mb-3 ">
               <span className=" text-gray-600 font-semibold block mb-2 ">
-                {" "}
-                Phone{" "}
+                Phone
               </span>
               <input
                 placeholder=" Your Phone Number "
@@ -71,8 +70,7 @@ const Login = () => {
 
             <div className="mb-3 ">
               <span className=" text-gray-600 font-semibold block mb-2">
-                {" "}
-                Password{" "}
+                Password
               </span>
               <input
                 placeholder="Password"

@@ -103,15 +103,15 @@ const AllPaymentCalculation = () => {
           Total Exam <br /> {paymentSummary?.paymentSummary?.examfeeTotal || 0}
         </p>
         <p className="p-3 bg-blue-500 rounded-md">
-          Total Admission <br />{" "}
+          Total Admission <br />
           {paymentSummary?.paymentSummary?.sessionfeeTotal || 0}
         </p>
         <p className="p-3 bg-pink-500 rounded-md">
-          Total Monthly <br />{" "}
+          Total Monthly <br />
           {paymentSummary?.paymentSummary?.monthlyfeeTotal || 0}
         </p>
         <p className="p-3 bg-orange-500 rounded-md">
-          Total Get: <br />{" "}
+          Total Get: <br />
           {paymentSummary?.paymentSummary?.examfeeTotal +
             paymentSummary?.paymentSummary?.sessionfeeTotal +
             paymentSummary?.paymentSummary?.monthlyfeeTotal || 0}
@@ -149,7 +149,6 @@ const AllPaymentCalculation = () => {
                     totalPayment?.monthlyfeeTotal || 0}
                 </td>
                 <td className="py-3 px-6 text-left ">
-                  {" "}
                   {paymentSummary?.paymentSummary?.examfeeTotal +
                     paymentSummary?.paymentSummary?.sessionfeeTotal +
                     paymentSummary?.paymentSummary?.monthlyfeeTotal -
@@ -194,7 +193,7 @@ const AllPaymentCalculation = () => {
                   <td className="py-3 px-6 text-left ">{ele?.sessionfee} </td>
                   <td className="py-3 px-6 text-left">{ele?.monthlyfee}</td>
                   <td className="py-3 px-6 text-left ">
-                    {ele?.examfee + ele?.monthlyfee + ele?.sessionfee}{" "}
+                    {ele?.examfee + ele?.monthlyfee + ele?.sessionfee}
                   </td>
                   <td className="py-3 px-6 text-left">{ele?.id}</td>
                 </tr>
