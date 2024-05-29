@@ -14,8 +14,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  // const from = location.state?.from?.pathname || "/dashboard"
-  const from = "/dashboard";
+  // const from = location.state?.from?.pathname || "/dashboard";
+  const from = "/dashboard" || "/home";
   const data = {
     teacherPhone: phone,
     password: password,
@@ -23,6 +23,7 @@ const Login = () => {
   const handleLogin = (event) => {
     event.preventDefault();
     setLoginflow(true);
+    setLoading(true);
     fetch("https://school-web-demo-server.vercel.app/api/v1/teacher/login", {
       method: "POST",
       headers: {
@@ -35,15 +36,24 @@ const Login = () => {
         if (result.status === "success") {
           localStorage.setItem("accessToken", result.data.token);
           localStorage.setItem("data", JSON.stringify(result.data.other));
-          // setLoading(true)
+
           toast.success("Login successful");
           setLoading(false);
+
           setTimeout(() => {
-            navigate(from, { replace: true });
+            if (teacher?.teacherPhone) {
+              navigate(from, { replace: true });
+            } else {
+              navigate("/", { replace: true });
+            }
             setLoginflow(false);
-          }, 700);
+          }, 1000);
         }
         if (result.error) {
+          setLoading(false);
+          toast.error("Login failed");
+        } else if (result.error) {
+          setLoading(false);
           toast.error("Login failed");
         }
       });

@@ -91,7 +91,7 @@ const AddTeachers = () => {
     setLoading(true);
     const imageUrl = await uploadImageToImgBB(imageFile);
     state.image = imageUrl;
-    console.log(state);
+
     try {
       const response = await fetch(
         "https://school-web-demo-server.vercel.app/api/v1/teacher/registration",

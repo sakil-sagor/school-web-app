@@ -46,7 +46,7 @@ const ExamFree = ({ paymentType, searchResult, againFetch, setAgainFetch }) => {
   const handleShowHide = () => {
     setHideShow(!hideShow);
   };
-  console.log(studentResult);
+
   return (
     <div className="">
       {paymentType === "exam-fee" && (

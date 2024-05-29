@@ -202,7 +202,7 @@ export default SignUp;
 //     const handleSubmit = (event) => {
 //         event.preventDefault();
 //         // Handle form submission here
-//         console.log(formData);
+//       r(formData);
 //         // Reset form data after submission
 //         setFormData({
 //             name: '',

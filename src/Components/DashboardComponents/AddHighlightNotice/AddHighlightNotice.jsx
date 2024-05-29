@@ -21,7 +21,7 @@ const AddHighlightNotice = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     // setLoading(true);
-    console.log(title);
+
     try {
       const response = await axiosSecure.post(
         "https://school-web-demo-server.vercel.app/api/v1/notice/highlightNotice",
@@ -55,7 +55,7 @@ const AddHighlightNotice = () => {
     // setLoading(true)
     const fetchProducts = async () => {
       try {
-        let url = `http://localhost:5000/api/v1/notice/highlightNotice`;
+        let url = `https://school-web-demo-server.vercel.app/api/v1/notice/highlightNotice`;
         const response = await axios.get(url);
         setAllNotice(response?.data?.data);
         setLoading(false);
@@ -71,7 +71,7 @@ const AddHighlightNotice = () => {
   const deleteHighLigeNotice = async (noticeId) => {
     try {
       const response = await axiosSecure.delete(
-        `http://localhost:5000/api/v1/notice/highlightNotice?noticeId=${noticeId}`
+        `https://school-web-demo-server.vercel.app/api/v1/notice/highlightNotice?noticeId=${noticeId}`
       );
 
       const data = response.data;

@@ -9,7 +9,7 @@ const NoticeBoradAll = () => {
   const [page, setPage] = useState(0);
   const [count, setCount] = useState(0);
   const [total, setTotal] = useState(0);
-  const limit = 3;
+  const limit = 10;
 
   useEffect(() => {
     // setLoading(true)
@@ -22,7 +22,7 @@ const NoticeBoradAll = () => {
         setAllNotice(response?.data?.data?.result);
         setCount(response?.data?.data?.pageCount);
         setTotal(response?.data?.data?.totalNotice);
-        console.log(response);
+
         window.scrollTo(0, 0);
         setLoading(false);
       } catch (error) {

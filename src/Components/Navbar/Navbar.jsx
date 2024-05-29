@@ -7,13 +7,13 @@ import LinkBar from "./LinkBar";
 
 const Navbar = () => {
   const { teacher, logout } = TeacherState();
-
+  // console.log(teacher);
   const [open, setOpen] = useState(true);
   const routes = [
     { id: 1, path: "/", name: "Home" },
     { id: 2, path: "/teachers", name: "Teachers" },
     { id: 3, path: "/notice", name: "Notice" },
-    { id: 4, path: "/gallery", name: "Gallery" },
+    // { id: 4, path: "/gallery", name: "Gallery" },
     { id: 5, path: "/contactus", name: "Contact-Us" },
   ];
 
@@ -22,7 +22,10 @@ const Navbar = () => {
       <div className="py-4 container mx-auto px-2">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="block text-4xl font-bold ami">Logo</h1>
+            <div className=" text-xl font-bold flex flex-col  justify-center items-center">
+              <p className="">পিপলাকান্দি বালিকা</p>
+              <p> উচ্চ বিদ্যালয়</p>
+            </div>
           </div>
           <div>
             <ul className=" hidden md:flex">
@@ -37,7 +40,7 @@ const Navbar = () => {
                 </li>
               ) : (
                 <li className="ml-2 mt-10 md:mt-0  border md:border-0  nav-bg  ">
-                  <NavLink className="" to="/registration">
+                  <NavLink className="" to="/login">
                     <span className="block py-2"> Login</span>
                   </NavLink>
                 </li>
@@ -76,7 +79,7 @@ const Navbar = () => {
               </li>
             ) : (
               <li className="ml-2 mt-10 md:mt-0 active border md:border-0  nav-bg ">
-                <NavLink className="ml-3 py-" to="/registration">
+                <NavLink className="ml-3 py-" to="/login">
                   <span className="block py-2"> Login</span>
                 </NavLink>
               </li>

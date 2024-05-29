@@ -12,7 +12,6 @@ const SessionFee = ({
   const [payOption, setPayOption] = useState("");
   let studentResult = searchResult[0];
 
-  console.log(studentResult);
   const fee = {
     money,
     payOption,
@@ -21,7 +20,7 @@ const SessionFee = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(fee);
+
     fetch(
       `https://school-web-demo-server.vercel.app/api/v1/payment/student/${searchResult[0]?._id}`,
       {

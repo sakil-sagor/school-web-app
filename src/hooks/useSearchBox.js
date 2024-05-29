@@ -12,7 +12,7 @@ const useSearchBox = () => {
         const response = await axios.get(
           "https://school-web-demo-server.vercel.app/api/v1/student/all"
         );
-        console.log(response.data.data);
+
         setAllStudent(response.data.data);
         setLoading(false);
       } catch (error) {

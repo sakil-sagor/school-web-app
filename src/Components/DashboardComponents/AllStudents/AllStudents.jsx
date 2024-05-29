@@ -23,7 +23,6 @@ const AllStudents = () => {
     };
     fetchProducts();
   }, []);
-  console.log(allStudent);
 
   return (
     <div className="min-h-[80vh] bg-blue-50">
@@ -35,10 +34,10 @@ const AllStudents = () => {
             <div className="py-6">
               <h2 className="text-green-600 font-semibold text-2xl ">
                 <AiFillDatabase className="inline mb-1"></AiFillDatabase>
-                Techers list
+                Students list
               </h2>
-              <div className="flex items-center justify-between mt-4 px-2">
-                {/* <p>Total Result:{teachers.length} <span>{""}</span></p> */}
+              {/* <div className="flex items-center justify-between mt-4 px-2">
+                
                 <div>
                   <label htmlFor="">Search </label>
                   <input
@@ -46,7 +45,7 @@ const AllStudents = () => {
                     type="text"
                   />
                 </div>
-              </div>
+              </div> */}
             </div>
             <hr />
             {loading ? (

@@ -42,7 +42,7 @@ const AllPaymentCalculation = () => {
         console.error(error);
       });
   }, [loading]);
-  console.log(totalPayment);
+
   const lastAuthor = totalDayPayment[0];
 
   // submit single day payment

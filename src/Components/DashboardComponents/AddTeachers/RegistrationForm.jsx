@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function RegistrationForm() {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
   const [imageFile, setImageFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleInputChange = (e) => {
     setFormData({
@@ -16,24 +16,24 @@ function RegistrationForm() {
     });
   };
 
-
-
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
   };
 
   const uploadImageToImgBB = async (imageFile) => {
-    const apiKey = '82ec2763f04d19d197f1451e6935abfe';
+    const apiKey = "82ec2763f04d19d197f1451e6935abfe";
     const formData = new FormData();
-    formData.append('image', imageFile);
+    formData.append("image", imageFile);
 
     try {
-      console.log(formData)
-      const response = await fetch('https://api.imgbb.com/1/upload?key=' + apiKey, {
-        method: 'POST',
-        body: formData,
-      });
+      const response = await fetch(
+        "https://api.imgbb.com/1/upload?key=" + apiKey,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
       if (data.status === 200) {
@@ -41,11 +41,11 @@ function RegistrationForm() {
         setImageUrl(imageUrl);
         return imageUrl;
       } else {
-        console.error('Image upload failed');
+        console.error("Image upload failed");
         return null;
       }
     } catch (error) {
-      console.error('Error uploading image: ', error);
+      console.error("Error uploading image: ", error);
       return null;
     }
   };
@@ -56,12 +56,11 @@ function RegistrationForm() {
 
     const imageUrl = await uploadImageToImgBB(imageFile);
 
-    console.log(imageUrl)
     // Use imageUrl in your registration logic or store it in your database
   };
 
   return (
-    <div className='p-24'>
+    <div className="p-24">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -84,11 +83,7 @@ function RegistrationForm() {
           value={formData.password}
           onChange={handleInputChange}
         />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-        />
+        <input type="file" accept="image/*" onChange={handleImageUpload} />
         <button type="submit">Register</button>
       </form>
     </div>

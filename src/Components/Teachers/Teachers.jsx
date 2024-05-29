@@ -41,13 +41,13 @@ const Teachers = () => {
                 <p>
                   Total Result:{teachers.length} <span>{""}</span>
                 </p>
-                <div>
+                {/* <div>
                   <label htmlFor="">Search </label>
                   <input
                     className="border border-gray-400 p-1 bg-blue-50 rounded"
                     type="text"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
             <hr />

@@ -95,8 +95,6 @@ const AddStudents = () => {
 
   // const year = currentDate
 
-  console.log(new Date().getFullYear() % 100);
-
   const addStudentsData = async (e) => {
     e.preventDefault();
     setLoading(true);

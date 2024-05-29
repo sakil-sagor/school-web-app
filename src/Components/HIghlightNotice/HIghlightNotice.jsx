@@ -11,7 +11,7 @@ const HIghlightNotice = () => {
     // setLoading(true)
     const fetchProducts = async () => {
       try {
-        let url = `http://localhost:5000/api/v1/notice/highlightNotice`;
+        let url = `https://school-web-demo-server.vercel.app/api/v1/notice/highlightNotice`;
         const response = await axios.get(url);
         setAllNotice(response?.data?.data);
         setLoading(false);
@@ -42,7 +42,6 @@ const HIghlightNotice = () => {
               <p>{result(allNotice)}</p>
             </div>
           </marquee>
-          ;
         </div>
       </div>
     </div>
